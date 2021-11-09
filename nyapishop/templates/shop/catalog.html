@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="catalog_tree">
+	{% for keys,value in asd %} 
+	<a class="tree_item" href="{% url 'shop:catalog_first' value %}">{{keys}} / </a>
+	{% endfor %}
+	<span>{{catalog_name}}</span>
+
+</div>
+<div class="checkout_header">
+		<div class="checkout_header_text"><h1>{{catalog_name}}</h1></div>
+	</div>
+
+<div class="catalog_parents">
+	{% for keys,value in parrent_zip %}
+	<a class="parent_item" href="{% url 'shop:catalog_first' keys %}">{{value}}</a>
+	{% endfor %}
+</div>
+
+
+<div class="containerr">
+	<div class="sorted-navbar_catalog">
+		<form method="GET" action="#" id = "qwe_form">
+			<span>Сортировать по: 
+				{%for field in from_sorted%}
+				{{field}}
+				{%endfor%}
+			</span><img src="{%static 'image/sort_arrows.svg'%}">
+		</form> </div>
+	<div class="price_filter">
+		<form class="price_filter_form" method="get">
+			<P>Цена,руб.</P>
+			{%for field in price_form%}
+			{{field}}
+			{%endfor%}
+			<P></P>
+			<button class="button_price_filter">Показать</button>
+		</form>	
+	</div>
+
+
+		<div class="popular-wrapper-list_catalog">
+			<div class="popular-list-first-row_catalog row" style="margin-top: 20px;">
+				{% for product_image in products_images %}
+				<div class="col-md-auto	 ">
+					<div class="card-product_catalog">
+						<form action ="{% url 'orders:basket_adding' %}" class = "producttobasket" method = "post" >{% csrf_token %}
+							<a class="card_info" href="{% url 'products:product' product_image.product.id %}">
+								<div class="card-image_catalog">
+									<img src="{{product_image.image.url}}" class="img-responsive" width="350" height="350">
+								</div>
+								<div class="card-title_catalog">{{product_image.product.product_title}}</div>
+							</a>
+							<div class="card-desc_catalog">
+
+
+								<div class="card-price_catalog">{{product_image.product.product_price}} руб.</div>
+								{% if product_image.product.product_availability  %}
+								<div class="card-button_catalog">
+									<button class="card-buy" data-product_id = "{{product_image.product.id}} "><span>Купить<img class="card-button-image" src="{%static 'image/cartm1.svg'%}"></span></button>
+								</div>
+								{% endif %}
+								{% if not product_image.product.product_availability  %}
+								<div class="card-button" >
+									<button class="card-buy-disabled" disabled><span>Нет в наличии</span></button>
+								</div>
+								{% endif %}
+
+							</div>	
+						</form>						
+
+					</div>
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<ul class="pagelist_catalog row" style="margin-left: 200px;">
+	{% if not catalog_page %}
+	{% if count_pag == 1 %}
+	<li class="prev-page_catalog"><img src="{% static 'image/next.svg' %}" style="transform: rotate(-180deg);"></li>
+	<li class="left_page_catalog">1</li>
+	<li class="next_page_catalog"> <img src="{% static 'image/next.svg' %}"></li>
+	{%else%}
+	<li class="prev-page_catalog"><img src="{% static 'image/next.svg' %}" style="transform: rotate(-180deg);"></li>
+	<li class="first-page_catalog "></li>
+	<li class="left_page_catalog">1</li>
+	<li class="center_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/2">2</a></li>
+	<li class="right_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/3">3</a></li>
+	<li class="last_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{count_pag}}">...</a></li>
+	<li class="next_page_catalog"><a href ="http://127.0.0.1:8000/catalog/{{id_category}}/p/2" > <img src="{% static 'image/next.svg' %}"></a></li>
+	{% endif %}
+
+	{%else%}
+	<li class="prev-page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{prev_page}}"><img src="{% static 'image/next.svg' %}" style="transform: rotate(-180deg);"></a></li>
+	<li class="first-page_catalog "><a href="http://127.0.0.1:8000/catalog/{{id_category}}">...</a></li>
+	{% if prev_page %}
+	<li class="left_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{prev_page}}">{{prev_page}}</a></li>
+	{% endif %}
+	<li class="center_page_catalog">{{catalog_page}}</li>
+	<li class="right_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{next_page}}">{{next_page}}</a></li>
+	{%if not catalog_page == count_pag %}
+	<li class="last_page_catalog"><a href="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{count_pag}}">...</a></li>
+	{% endif %}
+	{% if next_page %}
+	<li class="next_page_catalog"><a href ="http://127.0.0.1:8000/catalog/{{id_category}}/p/{{next_page}}" > <img src="{% static 'image/next.svg' %}"></a></li>
+	{%else %}
+	<li class="next_page_catalog"><img src="{% static 'image/next.svg' %}"></li>
+	{% endif %}	
+
+
+
+
+
+	{% endif %}
+</ul>
+{% endblock %}

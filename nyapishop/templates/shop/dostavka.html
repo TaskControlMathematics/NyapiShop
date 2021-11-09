@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Пользовательское соглашение  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <span>Доставка и оплата</span> </div>
+    <div class="static_title"><h1>Доставка и оплата</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+            
+
+
+
+            <h2>Магазин в Москве открыт.<br>
+                Обслуживание в магазине производится только клиентов в масках и перчатках. На время пандемии сроки доставки могут быть увеличены.<br>
+                <br>
+                ЦЕНА И СРОКИ ДОСТАВКИ:<br>
+                <br>
+                <strong><span style="font-size:15pt;">Москва:</span></strong></h2>
+
+                <ul>
+                    <li>
+                        <p><span style="font-size:12pt;">Самовывоз, 1-3 дня</span></p>
+                    </li>
+                    <li>
+                        <p><span style="font-size:12pt;">Курьер до метро –&nbsp;200 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span>, 1-3 дня&nbsp;</span></p>
+                    </li>
+                    <li>
+                        <p><span style="font-size:12pt;">Курьер до адреса – 350 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span>, 1-3 дня</span></p>
+                    </li>
+                </ul>
+
+                <p><strong><span style="font-size:15pt;">Московская область:</span></strong></p>
+
+                <ul>
+                    <li>
+                        <p><span style="font-size:12pt;">Курьер&nbsp;– 500 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span> не более 10 км&nbsp;от Москвы, 1-3 дня</span></p>
+                    </li>
+                    <li>
+                        <p><span style="font-size:12pt;">Почта&nbsp;– 300 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span>, 5-20 дней</span></p>
+                    </li>
+                </ul>
+
+                <p><strong><span style="font-size:15pt;">По России:</span></strong></p>
+
+                <ul>
+                    <li>
+                        <p><span style="font-size:12pt;">Почта 300 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span>, 5-30 дней</span></p>
+                    </li>
+                    <li>
+                        <p><span style="font-size:12pt;">Почта крупногабаритная : примерная цена 500 <span style="font-family:Arial,Helvetica,sans-serif;">руб</span>, сбор+доставка 5-30 дней, Данная доставка необходима для заказов почтой, содержащих основы подушки от 100см и больше. Рассчитывается индивидуально в зависимости от удаленности от Москвы и веса посылки.</span></p>
+                    </li>
+                    <li>
+                        <p><span style="font-size:12pt;">СДЕК ориентировочная стоимость 500р, в зависимости от веса и удаленности цена может возрасти, расчет производится после оплаты заказа и брони в 500р, до 5ти рабочих дней, сбор и отправка 1-3 дня.</span><br>
+                        &nbsp;</p>
+                    </li>
+                </ul>
+
+                <h2>СПОСОБЫ ОПЛАТЫ:</h2>
+
+                <p><strong><span style="font-size:15pt;">При самовывозе</span></strong></p>
+
+                <p><span style="font-size:12pt;">Оплата на сайте,&nbsp;в&nbsp;магазине: за наличные, картой.</span></p>
+
+                <p><strong><span style="font-size:15pt;">При доставке курьером</span></strong></p>
+
+                <p><span style="font-size:12pt;">Оплата на сайте, наличными курьеру при получении.&nbsp;</span></p>
+
+                <p><strong><span style="font-size:15pt;">При заказе почтой или Сдеком по России</span></strong></p>
+
+                <p><span style="font-size:12pt;">Оплата на сайте.</span></p>
+
+
+
+
+
+            </div>
+            
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

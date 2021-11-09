@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} USPEH {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+</head>
+{% block content %}
+<div style='width: 1920px; padding-left: 160px;'>
+	<div><h1>Привет! Хорошая работа {{username}}. Спасибо за заказ.</h1></div>
+	
+	<h2> Вы заказали:</h2> 
+		{% for item in products_in_basket %}
+			<li>{{item.product.product_title}}</li>
+		{% endfor %}
+		
+	
+</div>
+{% endblock %}
+</body>
+</html>

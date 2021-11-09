@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Пользовательское соглашение  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <span>Акции</span> </div>
+    <div class="static_title"><h1>Акции</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+        <div class="site_main_body">
+
+
+
+
+            <div class="actionlist">
+                <div class="actionlist__block">
+                    <div class="localpic actionlist__block-pic localpic--normal" style="display: inline-block;  background: none; text-align:left;">
+                     
+                    </div>
+                    <div class="localdiscription " style="margin-top:10px;"></div>
+                    <div class="actionlist__block-title">БЕСПЛАТНЫЙ вход на аниме-пати!</div>
+                    <div class="localtext">
+                        <p><span style="font-size:12pt;">Хочешь бесплатно на аниме-вечеринку? — ЛЕГКО!</span></p>
+
+                        <p><span style="font-size:12pt;">Собирай друзей, покупайте вместе товары в аниме-магазине НЯПИ в Москве, главное купить на сумму от&nbsp; 2000 руб, — и ПОЛУЧИ В ПОДАРОК КАРТОЧКУ НА БЕСПЛАТНЫЙ ВХОД на аниме-пати!</span></p>
+
+                        <p><span style="font-size:12pt;">Отдай её кассиру в день вечеринки вместо денег!</span></p>
+
+                        <p><span style="font-size:12pt;">УРА акциям от НЯПИ! Приходи!</span></p>
+                    </div>
+                </div>
+                <div class="actionlist__block">
+                    <div class="localpic actionlist__block-pic localpic--normal" style="display: inline-block;  background: none; text-align:left;">
+
+                    </div>
+                    <div class="localdiscription " style="margin-top:10px;"></div>
+                    <div class="actionlist__block-title">Ежемесячная акция -15%</div>
+                    <div class="localtext">
+                        СКИДКА -15% на все, каждые последние пятницу- воскресенье месяца!&nbsp;<br>
+                        <br>
+                        Купон: 151515
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

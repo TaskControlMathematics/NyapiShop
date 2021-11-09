@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Услуги {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <span>Услуги</span> </div>
+    <div class="static_title"><h1>Услуги</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+            
+
+
+
+            Доступны фигурки под заказ.<br>
+            Чтобы заказать желаемую фигурку позвоните нам 8 (925) 454-77-95.<br>
+            Стоимость рассчитывается в течение 1-2 дней, предоплата 50%.
+
+
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

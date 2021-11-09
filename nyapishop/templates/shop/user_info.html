@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Пользовательская информация  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+	<link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_page">
+	<div class="user_main_wrap">
+		<div class="user_info_tree">
+			Главная  /  Пользователи  /  Мой кабинет
+		</div>
+		<div class="user_info_title">
+			<h1>Мой кабинет</h1>
+			
+		</div>
+		<form class="logout_user_form" method="POST">{% csrf_token %}
+			<div class="user_buttons">
+				<a class="button_link_user this_user_page" href="#">Мой кабинет</a>
+				<a class="button_link_user" href="{% url 'shop:user_info_setting' %}">Личные данные</a>
+				<a class="button_link_user" href="{% url 'shop:password_forgot' %}">Смена пароля</a>
+				<a class="button_logout" href="{% url 'shop:main' %}" data-user_logout ={{user}}>Выйти</a>
+
+			</div>
+		</form>
+		
+		<div class="user_home_page">
+			<br>
+			Добро пожаловать! Вы авторизовались как {{user_info.name}}.
+			<br>
+			<br>
+			E-mail: {{user.username}}
+			<br>
+			Накопленная сумма: 0 руб. Количество бонусов: 0.00 
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
+</body>
+</html>

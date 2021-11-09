@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Вакансии  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class = "main_link" href="{% url 'shop:informatsiya' %}">Информация</a>  /  <span>Вакансии</span> </div>
+    <div class="static_title"><h1>Вакансии</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+     <div class="site_main_body">
+        
+
+
+        На данный момент открытых вакансий нет.
+
+        <div class="localvacancy">
+            <div class="localvacancy__block">
+                <div class="localtitle">Швея</div>
+                <div class="localvacancy__block-discription">от 35 000 руб.</div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Требования</div>
+                    <ul>
+                        <li><span style="font-size:18pt;">Доброжелательность, ответственность, коммуникабельность, нацеленность на результат</span></li>
+                        <li><span style="font-size:18pt;">Умение работать с людьми</span></li>
+                        <li><span style="font-size: 24px;">Опыт работы от 1 года</span></li>
+                    </ul>
+                </div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Место работы</div>
+                    <p><span style="font-size:18pt;">Россия, 125040, г. Москва, Ленинский проспект, дом, строение, номер кабинета</span></p>
+                </div>
+            </div>
+            <div class="localvacancy__block">
+                <div class="localtitle">Продавец-консультант</div>
+                <div class="localvacancy__block-discription">от 35 000 руб.</div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Требования</div>
+                    <ul>
+                        <li><span style="font-size:18pt;">Опыт работы в торговле от 1 года</span></li>
+                        <li><span style="font-size:18pt;">ПК - на уровне уверенного пользователя</span></li>
+                        <li><span style="font-size:18pt;">Доброжелательность‚ ненавязчивость‚ пунктуальность‚ активная жизненная позиция и целеустремленность в достижении результатов.</span></li>
+                    </ul>
+                </div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Место работы</div>
+                    <p><span style="font-size:18pt;">г. Москва, Тушинская 16.</span></p>
+                </div>
+            </div>
+            <div class="localvacancy__block">
+                <div class="localtitle">Сайт-менеджер</div>
+                <div class="localvacancy__block-discription">от 35 000 руб.</div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Требования</div>
+                    <ul>
+                        <li><span style="font-size:18pt;">Знание 1с</span></li>
+                        <li><span style="font-size:18pt;">Высокая концентрация внимания</span></li>
+                        <li><span style="font-size:18pt;">Коммуникабельность,стрессоустойчивость,вежливость,пунктуальность</span></li>
+                        <li><span style="font-size:18pt;">Многозадачность</span></li>
+                    </ul>
+                </div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Место работы</div>
+                    <p><span style="font-size:18pt;">г. Москва, Тушинская 16.</span></p>
+                </div>
+            </div>
+            <div class="localvacancy__block">
+                <div class="localtitle">Курьер</div>
+                <div class="localvacancy__block-discription">зп сдельная</div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Требования</div>
+                    Умение пользоваться навигатором<br>
+                    Пунктуальность<br>
+                    Навыки общения по телефону с клиентом<br>
+                    &nbsp;
+                </div>
+                <div class="localtext localvacancy__block-text">
+                    <div class="localvacancy__block-title">Место работы</div>
+                    <span style="font-size:18pt;">г. Москва, Тушинская 16.</span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Регистрация  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+<body>
+{% block content %}
+<div class="registration_wrapqsad">
+	<div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class="main_link" href="#">Пользователи</a>  /  <span>Регистарция</span> 
+	</div>
+	<div class="regisred_title">Регистрация</div>
+	<div class="registartion_left_wrap">
+		<form method="POST"> {% csrf_token %}
+			<div class="registartion_template_form">
+				<div class="registration_template_title">E-mail<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.username}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Пароль<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.password1}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Введите пароль повторно<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.password2}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Имя<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.name}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Фамилия<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.sirname}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Отчество<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.secname}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Телефон<span class="red_star">*</span></div>
+				<div class="registration_template_value">
+					{{form.phone}}
+				</div>
+			</div>
+			<div class="registartion_template_form_textarea">
+				<div class="registration_template_title">Комментарий</div>
+				<div class="registration_template_value">
+					{{form.comment}}
+				</div>
+			</div>
+			<div class="registartion_template_form">
+				<div class="registration_template_title">Страна</div>
+				<div class="registration_template_value">
+					{{form.country}}
+				</div>
+			</div>
+			<div class="registartion_capcha">Я согласен(на) на обработку моих персональных данных. <a href="{% url 'shop:user_agreement' %}">Подробнее</a></div>
+			<div class="reg_button">
+				<button class="registration_button" >Зарегистрироваться</button>
+			</div>
+			
+		</form>
+		
+	</div>
+</div>
+{% endblock %}
+</body>
+</html>

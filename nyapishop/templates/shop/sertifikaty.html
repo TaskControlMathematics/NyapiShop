@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Сертификаты  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class = "main_link" href="{% url 'shop:informatsiya' %}">Информация</a>  /  <span>Сертификаты</span> </div>
+    <div class="static_title"><h1>Сертификаты</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+        	<p><span style="font-size: 24px;">Тут вы можете посмотреть сертификацию на нашу продукцию.</span></p>
+        	<span style="font-size: 24px;">По всем вопросам 89254547795.</span>
+			</div>
+        
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

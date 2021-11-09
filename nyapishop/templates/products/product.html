@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Купить {{product.product_title}}  {% endblock %}
+{% block content %} 
+<!--<div class="section">-->
+<!--	<div class="section-row">-->
+<!--		<div class="row-slider row">-->
+<!--			<div class="row-anime" style= "width:284px;text-align: center;" >-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/anime.png'%}">-->
+<!--					<div>Аниме товары</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			<div class="row-anime_podushki_dakimakury"style= "width:284px;text-align: center;">-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/anime_podushki_dakimakury.png'%}">-->
+<!--					<div>Аниме подушки, дакимакуры</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			<div class="row-dakimakury_150kh50"style= "width:284px;text-align: center;">-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/dakimakury_150kh50.png'%}">-->
+<!--					<div>Дакимакуры 150х50</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			<div class="row-dakimakury_100x40"style= "width:284px;text-align: center;">-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/dakimakury_100x40.png'%}">-->
+<!--					<div>Дакимакуры 100х40</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			<div class="row-mini-podushki_165_kh_5sm"style= "width:284px;text-align: center;">-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/mini-podushki_165_kh_5sm.png'%}">-->
+<!--					<div>Мини подушки 16.5х5см</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			<div class="row-ryukzaki_i_sumki"style= "width:284px;text-align: center;">-->
+<!--				<a href="#" >-->
+<!--					<img src="{%static 'image/ryukzaki_i_sumki.png'%}">-->
+<!--					<div>Рюкзаки и сумки</div>-->
+<!--				</a>-->
+<!--			</div>-->
+<!--			-->
+<!--		</div>-->
+<!--		-->
+<!--	</div>-->
+<!--	-->
+</div>
+<div class="catalog_tree">
+	{% for keys,value in trees %} 
+		<a class="tree_item" href="{% url 'shop:catalog_first' value %}">{{keys}} / </a>
+	{% endfor %}
+	<span>{{catalog_name}}</span>
+
+</div>
+
+<div class="product-main-page">
+	<div class="product-main-page-card">
+		<div class="product-main-page-card-left">
+			{% for image_item in product_info.productimage_set.all %}
+				<p><img src="{{image_item.image.url}}" width="650" height="650"></p>
+			{% endfor %}
+		</div>
+		<div class="product-main-page-card-right shadow-lg bg-white rounded">
+			<div class="product-main-page-card-right-title">{{product_info.product_title}}</div>
+			<!-- <div class="product-main-page-card-right-article">Артикул: нет</div> -->
+			<div class="product-main-page-card-right-price">{{product_info.product_price}}руб.</div>
+			<div class="product-main-page-card-right-count">
+				<div class="product-main-page-card-right-count-count">Колличество:</div>
+				<div class="product-main-page-card-right-count-form">
+					<div class="button-count-minus"> 
+						<button class="count-minus">-</button>
+					</div>	
+					
+						<div class="input-count">
+							<input  type="text" value="1"  name="input-count-input">
+						</div>
+					<div class="button-count-plus" > 
+						<button class="count-plus" type="button">+</button>
+					</div>	
+				</div>
+			</div>
+			<form action ="{% url 'orders:basket_adding' %}" method="post" id="form-buy-product">{% csrf_token %}
+				<div class="product-main-page-card-right-buy">
+					<div class="product-main-page-card-right-buy-compare"></div>
+					<div class="product-main-page-card-right-buy-buybtn">
+						{% if product_info.product_availability  %}
+							<button type="submit" class="product-main-page-card-right-buy-buybtn-button" data-product_id = "{{product_info.id}}" data-name = "{{product_info.product_title}}"><img class="card-button-image_product" src="{%static 'image/cartm1.svg'%}"><span>Купить</span></button>	
+						{% else %}
+							<button class="product-main-page-card-right-buy-buybtn-button-disablet" disabled><span>Нет в наличии</span><img class="card-button-image" src="{%static 'image/cartm1.svg'%}" width="40" height="40" style="margin-left: 15px;"></button>
+						{% endif %}
+
+					</div>
+				</div>
+			</form>	
+		</div>
+	</div>
+</div>
+{% if not product_info.product_description == "no_description" %}
+	<div class="other_info">
+		<div class="description_product">
+			<div class="desc_title">Описание</div>
+			<div class="desc_body">{{product_info.product_description}}</div>
+		</div>
+	
+	</div>
+{% endif %}	
+{% if not user.is_authenticated %}
+<div class="comment_block">
+	<div class="comment_wrap">
+		<div class="comment_title">Авторизуйтесь, чтобы оставить комментарий</div>
+		<div class="comment_body">
+<!--			{{user.is_authenticated}}-->
+			
+				<form method="POST">{% csrf_token %}
+
+					<div class="email_comment">{{form.username}}</div>
+					<div class="pass_comment">{{form.password}}</div>
+					<div class="checkbox_saved">
+						<!-- <input type="checkbox" name="checkbox_save"> -->
+						<!-- <span>Запомнить меня</span> -->
+						<button>Войти</button>
+					</div>
+					<div class="registred_customer"><a href = "{% url 'shop:registred' %}" target="_blank" >Регистрация</a></div>
+					<div class="right_comment_text">Если Вы уже зарегистрированы на нашем сайте, но забыли пароль или Вам не пришло письмо подтверждения, воспользуйтесь формой восстановления пароля.
+					</div>
+					<div class="botton_vosstan"><a href = "{% url 'shop:password_forgot' %}" target="_blank" >Восстановление пароля</a></div>
+					<!-- <button class="botton_vosstan">Восстановление пароля</button> -->
+				</form>
+			
+			
+		</div>
+	</div>
+	
+</div>
+{% else %}
+	<div class="comment_wraper">
+		<div class="comment_blok">
+			<div class="comment_form">
+				<div class="comment_header">Оставьте отзыв</div>
+				<div class="comment_info">Заполните обязательные поля <span>*</span>.</div>
+				<form method="POST" class="comment_main_form">{% csrf_token %}
+					<div class="comment_text">
+						{{comment_form.comment_text}}
+					</div>
+					<div class="comment_button">
+						<button class="comment_click" type="submit">Отправить</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+{% endif%}
+<div class="razdels">
+	Находится в разделах:       
+	{% for key,value in qwe%}
+		<a class="razdel" href="{% url 'shop:catalog_first' value %}">{{key}}</a>
+	{%endfor%}
+</div>
+
+ {% endblock %}

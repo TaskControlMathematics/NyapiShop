@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Помощь  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <span>Помощь</span> </div>
+    <div class="static_title"><h1>Помощь</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+
+
+           <p>Если Вам нужна помощь, то&nbsp;вы можете позвонить нам с 12:00 до 21:00 по Московскому времени по телефону 89254547795, или написать на почту&nbsp;nyapi4you@mail.ru<br>
+&nbsp;</p>
+        </div>
+        <ul class="g-submenu ">
+			<li class="g-submenu__item"><a href="{% url 'shop:kak_sdelat_zakaz' %}">Как сделать заказ</a></li>
+			<li class="g-submenu__item"><a href="{% url 'shop:vozvrat_i_obmen_tovara' %}">Возврат и обмен товара</a></li>
+			<li class="g-submenu__item"><a href="{% url 'shop:sposoby_oplaty' %}">Способы оплаты</a></li>
+	</ul>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

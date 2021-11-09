@@ -1,0 +1,537 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+	<link rel = "stylesheet" href = "{% static 'css/style_main.css' %}">
+	<title>"Няпи" аниме-магазин номер 1 в России</title>
+</head>
+<body>
+	{% block content %}
+	<div class="site_main">
+		<div class="slider-item">
+			<div class="right-slider-item">
+				<div class="right-slider-text">
+					<div class="right-slider-text-title">Поиск по аниме</div>
+					<div class="right-slider-text-body">Используй поиск что бы найти товары с любимым аниме. Приходите в наш магазин в Москве
+					</div>
+					<a class="more-information" href="#">подробнее</a>
+
+				</div>
+			</div>	
+			<form action="{% url 'shop:main' %}" method="get" class="form-slider">
+				<input name="q"  type="text" placeholder="Введите название">
+				<div class="button-form"><button  type="submit">Найти</button></div>
+			</form>
+	<!-- <form class="form-slider">
+		<input type="text" name=" " placeholder="Введите название">
+		<div class="button-form"><button type = "submit">Найти</button></div>
+	</form> -->
+</div>
+<!-- <div class="section">
+	<div class="section-row">
+		<div class="row-slider row">
+			<div class="row-anime" style= "width:284px;text-align: center;" >
+				<a href="#" >
+					<img src="{%static 'image/anime.png'%}">
+					<div>Аниме товары</div>
+				</a>
+			</div>
+			<div class="row-anime_podushki_dakimakury"style= "width:284px;text-align: center;">
+				<a href="#" >
+					<img src="{%static 'image/anime_podushki_dakimakury.png'%}">
+					<div>Аниме подушки, дакимакуры</div>
+				</a>
+			</div>
+			<div class="row-dakimakury_150kh50"style= "width:284px;text-align: center;">
+				<a href="#" >
+					<img src="{%static 'image/dakimakury_150kh50.png'%}">
+					<div>Дакимакуры 150х50</div>
+				</a>
+			</div>
+			<div class="row-dakimakury_100x40"style= "width:284px;text-align: center;">
+				<a href="#" >
+					<img src="{%static 'image/dakimakury_100x40.png'%}">
+					<div>Дакимакуры 100х40</div>
+				</a>
+			</div>
+			<div class="row-mini-podushki_165_kh_5sm"style= "width:284px;text-align: center;">
+				<a href="#" >
+					<img src="{%static 'image/mini-podushki_165_kh_5sm.png'%}">
+					<div>Мини подушки 16.5х5см</div>
+				</a>
+			</div>
+			<div class="row-ryukzaki_i_sumki"style= "width:284px;text-align: center;">
+				<a href="#" >
+					<img src="{%static 'image/ryukzaki_i_sumki.png'%}">
+					<div>Рюкзаки и сумки</div>
+				</a>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div> -->
+<div class="top-contacts">
+	<div class="top-contacts-wrapper">
+		<div class="top-contacts-body row">
+			<div class="top-contacts-item-contact">
+				<div class="contact-img"></div>
+				<div class="contact-title">Контакты:</div>						
+				<div class="contact-body">
+					<div style="font-size: 24px;line-height: 32px; color:rgb(74, 74, 74);"><a href="#" style="color:rgb(74, 74, 74);">8 (925) 454-77-95</a></div>
+					<div style="font-size: 24px;line-height: 32px; color:rgb(74, 74, 74);"><a href="#" style="color:rgb(74, 74, 74);">8 (929) 516-22-41</a></div>
+				</div>	
+			</div>
+			<div class="top-contacts-item-address">
+				<div class="top-address-body">
+
+					<div class="top-address-body-title">г. Москва, ул. Тушинская 16.</div>						
+					<div class="top-address-body-body" style="color:rgb(74, 74, 74);">м. Тушинская, ул. Тушинская, дом 16, 2й этаж, левое крыло.</div>	
+					<div class="top-address-body-address-img"></div>
+				</div>
+			</div>
+			<div class="top-contacts-item-time">
+				<div class="top-time-body">
+
+					<div class="top-time-body-title">без выходных</div>						
+					<div class="top-time-body-body" style="color:rgb(74, 74, 74);">с 12:00 до 21:00</div>	
+					<div class="top-time-body-address-img"></div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>	
+</div>
+
+<div class="popular-wrapper">
+	<div class="popular_cat_wrapper " style="width: 1523px;">
+		<div class="popular_cat_wrap">
+			<div class="popular_cat_body">
+				<div class="popular_cat_title">Популярные рубрики</div>
+				<div class="popular_cat_items one iter_three_2">
+					<div class="popular_cat_item has_text">
+						<a href="http://127.0.0.1:8000/catalog/140" class="item_link"></a>
+						<div class="item_pic">
+							<img class="lazy_img" src="{%static 'image/cat-popular_11.jpg'%}" data-src="/thumb/2/5wUt0R_VlO-DCAqUUeSJnA/1024c768/d/dc33de_0.jpg" alt="Фигурки" />
+						</div>
+						<div class="item_text_wrap">
+							<div class="item_text">
+								<div class="item_title">Фигурки</div>											<a href="http://127.0.0.1:8000/catalog/140" class="item_btn"><span></span><ins>к товарам</ins></a>										</div>
+							</div>
+						</div>
+						<div class="popular_cat_item has_text">
+							<a href="http://127.0.0.1:8000/catalog/61" class="item_link"></a>
+							<div class="item_pic">
+								<img class="lazy_img" src="{%static 'image/cat_popular_12.jpg'%}" data-src="/thumb/2/osG1q7r9a4PIHCuhumRY2A/1024c768/d/4fd432fd.jpg" alt="Кигуруми" />
+							</div>
+							<div class="item_text_wrap">
+								<div class="item_text">
+									<div class="item_title">Кигуруми</div>											<a href="http://127.0.0.1:8000/catalog/61" class="item_btn"><span></span><ins>к товарам</ins></a>										</div>
+								</div>
+							</div>
+							<div class="popular_cat_item has_text">
+								<a href="http://127.0.0.1:8000/catalog/225" class="item_link"></a>
+								<div class="item_pic">
+									<img class="lazy_img" src="{%static 'image/cat_popular_13.jpg'%}" data-src="/thumb/2/sThPSlCNo9ikZ9LBQ76XkA/1024c768/d/4fd432.jpg" alt="Косплей" />
+								</div>
+								<div class="item_text_wrap">
+									<div class="item_text">
+										<div class="item_title">Косплей</div>											<a href="http://127.0.0.1:8000/catalog/225" class="item_btn"><span></span><ins>к товарам</ins></a>										</div>
+									</div>
+								</div>
+								<div class="popular_cat_item has_text">
+									<a href="http://127.0.0.1:8000/catalog/130" class="item_link"></a>
+									<div class="item_pic">
+										<img class="lazy_img" src="{%static 'image/cat_popular_21.jpg'%}" data-src="/thumb/2/FwIK96OTe9oLwnG4r9tvTA/1024c768/d/23e_0_0.jpg" alt="Манга и ранобэ" />
+									</div>
+									<div class="item_text_wrap">
+										<div class="item_text">
+											<div class="item_title">Манга и ранобэ</div>											<a href="http://127.0.0.1:8000/catalog/130" class="item_btn"><span></span><ins>к товарам</ins></a>										</div>
+										</div>
+									</div>
+									<div class="popular_cat_item has_text">
+										<a href="http://127.0.0.1:8000/catalog/239" class="item_link"></a>
+										<div class="item_pic">
+											<img class="lazy_img" src="{%static 'image/cat_popular_22.jpg'%}" data-src="/thumb/2/SEU0Af8mrTZUv426IlbdDw/1024c768/d/edsxsa3_1_0.jpg" alt="Аниме подушки" />
+										</div>
+										<div class="item_text_wrap">
+											<div class="item_text">
+												<div class="item_title">Аниме подушки</div>											<a href="http://127.0.0.1:8000/catalog/239" class="item_btn"><span></span><ins>к товарам</ins></a>										</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+	<!-- <div class="popular-main">
+		<div class="popular-main-cat">
+			<div class="popular-main-cat-title">Популярные рубрики</div>
+			<div class="popular-main-cat-body">
+				<div class="first-row-popular-main-cat-body row">
+					<div class="first-row-popular-main-cat-body-first-item">
+						<img src="{% static 'image/cat-popular_11.jpg'%}" width="577" height="433">
+						<div>Фигурки</div>
+					</div>
+					<div class="first-row-popular-main-cat-body-second-item">
+						<img src="{% static 'image/cat_popular_12.jpg'%}" width="274" height="402">
+						<div class="second-row-popular-main-cat-body-second-item-text">Кигуруми</div>
+					</div>
+					<div class="first-row-popular-main-cat-body-third-item">
+						<img src="{% static 'image/cat_popular_13.jpg'%}" width="274" height="402">
+						<div class="third-row-popular-main-cat-body-second-item-text">Косплей</div>
+					</div>
+				</div>
+				<div class="second-row-popular-main-cat-body row">
+					<div class="second-row-popular-main-cat-body-first-item">
+						<img src="{% static 'image/cat_popular_21.jpg'%}" width="577" height="433">
+						<div>Манга и ранобэ</div>
+					</div>
+					<div class="second-row-popular-main-cat-body-second-item">
+						<img src="{% static 'image/cat_popular_22.jpg'%}" width="577" height="433">
+						<div>Аниме подушки</div>
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+		
+	</div> -->
+
+	<div class="sorted-navbar">
+		<form method="GET" action="#" id = "qwe_form">
+			<span>Сортировать по: 
+				{%for field in from_sorted%}
+				{{field}}
+				{%endfor%}
+			</span><img src="{%static 'image/sort_arrows.svg'%}">
+		</form> </div>
+
+
+		<div class="container">
+			<div class="popular-wrapper-list">
+				<div class="popular-list-first-row row">
+
+					{% for product_image in products_images %}
+					<div class="col-lg-4">
+						<div class="card-product">
+							<form action ="{% url 'orders:basket_adding' %}" class = "producttobasket" method = "post" >{% csrf_token %}
+								<a class = 'card_info' href="{% url 'products:product' product_image.product.id %}">
+									<div class="card-image">
+										<img src="{{product_image.image.url}}" class="img-responsive" width="466" height="466">
+									</div>
+									<div class="card-title">{{product_image.product.product_title}}</div>
+								</a>
+								<div class="card-desc">
+									
+									
+									<div class="card-price"><span>{{product_image.product.product_price}}</span> руб.</div>
+									{% if product_image.product.product_availability  %}
+
+									<div class="card-button" >
+										<button type="submit" class="card-buy" data-product_id = "{{product_image.product.id}}"><span>Купить</span><img class="card-button-image" src="{%static 'image/cartm1.svg'%}" width="40" height="40" style="margin-left: 15px;"></button>
+									</div>	
+
+
+									{% endif %}
+									{% if not product_image.product.product_availability  %}
+									<div class="card-button" >
+										<button class="card-buy-disabled" disabled><span>Нет в наличии</span></button>
+									</div>
+									{% endif %}
+
+								</div>
+							</form>	
+
+						</div>
+
+					</div>
+					{% endfor %}
+
+				</div>			
+			</div>
+		</div>
+
+		<ul class="pagelist row">
+			{% if not main_page %}
+				<li class="prev-page"> <img src="{% static 'image/next.svg' %}" style="transform: rotate(-180deg);"></li>
+				<li class="first-page "></li>
+				<li class="left_page">1</li>
+				<li class="center_page"><a href="http://127.0.0.1:8000/p/2">2</a></li>
+				<li class="right_page"><a href="http://127.0.0.1:8000/p/3">3</a></li>
+				<li class="last_page"><a href="http://127.0.0.1:8000/p/{{count_pag}}">...</a></li>
+				<li class="next_page"><a href ="http://127.0.0.1:8000/p/2" >  <img src="{% static 'image/next.svg' %}"></a></li>
+
+			{% else %}
+				<li class="prev-page"><a href="http://127.0.0.1:8000/p/{{prev_page}}"> <img src="{% static 'image/next.svg' %}" style="transform: rotate(-180deg);"> </a></li>
+				<li class="first-page "><a href="/">...</a></li>
+				{% if prev_page %}
+					<li class="left_page"><a href="http://127.0.0.1:8000/p/{{prev_page}}">{{prev_page}}</a></li>
+				{% else %}
+					<li class="left_page"><a href="#">1</a></li>
+				{% endif %}
+				<li class="center_page">{{main_page}}</li>
+				<li class="right_page"><a href="http://127.0.0.1:8000/p/{{next_page}}">{{next_page}}</a></li>
+				{%if not main_page == count_pag %}				
+					<li class="last_page"><a href="http://127.0.0.1:8000/p/{{count_pag}}">...</a></li>
+				{% endif %}
+				{% if next_page %}
+					<li class="next_page"><a href ="http://127.0.0.1:8000/p/{{next_page}}" >  <img src="{% static 'image/next.svg' %}"></a></li>
+				{%else %}
+					<li class="next_page"><img src="{% static 'image/next.svg' %}"></li>
+				{% endif %}
+			{% endif %}
+			
+		</ul>
+		
+	</div>
+</div>
+<div class="ads_bl_wrapper" style="width: 1823px; ">
+	<div class="ads_bl_wrap">
+		<div class="ads_bl_body">
+			<div class="ads_bl_title">Наши преимущества</div>
+			<div class="ads_bl_items">
+				<div class="ads_bl_item">
+					<div class="ads_item_icon"><img class="lazy_img" src="{%static 'image/666fdd.jpg'%}" data-src="/thumb/2/SLXg1_imcgHX-QgZ-wYrbA/120c120/d/666fdd.jpg" alt="Быстрая доставка" /></div>
+					<div class="ads_item_title">Быстрая доставка</div>
+				</div>
+				<div class="ads_bl_item">
+					<div class="ads_item_icon"><img class="lazy_img" src="{%static 'image/22d.png'%}" data-src="/thumb/2/B663uFPv5-HNXVLBwPUykw/120c120/d/22d.png" alt="Гарантия качества" /></div>
+					<div class="ads_item_title">Гарантия качества</div>
+				</div>
+				<div class="ads_bl_item">
+					<div class="ads_item_icon"><img class="lazy_img" src="{%static 'image/43d3d3dcd.jpg'%}" data-src="/thumb/2/wkTVAGml_5YRvTgObJf7hw/120c120/d/43d3d3dcd.jpg" alt="Новинки каждый день" /></div>
+					<div class="ads_item_title">Новинки каждый день</div>
+				</div>
+				<div class="ads_bl_item">
+					<div class="ads_item_icon"><img class="lazy_img" src="{%static 'image/43d3d3dcdf.jpg'%}" data-src="/thumb/2/6sjFq35TyPNFBHAjPDjiWg/120c120/d/43d3d3dcdf.jpg" alt="Подарок к каждой покупке" /></div>
+					<div class="ads_item_title">Подарок к каждой покупке</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="edit_bl_wrapper" style="width: 1823px;">
+	<div class="edit_bl_wrap">
+		<div class="edit_bl_body">
+			<div class="edit_bl_title">
+				<h1>Интернет-магазин Няпи</h1>
+			</div>
+			<div class="edit_bl_text">
+				<div class="shop2-main-before">
+					<p><span style="color:#000000;">Анимешник, Гик или любитель К-поп &ndash; это ты? Тогда ты попал по адресу!<br />
+					В нашем магазине есть все! Широкий ассортимент одежды, линзы и парики для косплея, цветная краска для волос и мелки. Свыше 500 видов карнавальных линз: зеленые, голубые, черные и прочих цветов. Есть все виды аниме и корейских линз, увеличивающих глаза.</span></p>
+
+					<p><span style="color:#000000;">Пижамы кигуруми подойдут как для сна или занятий спортом, так и для аниме фестиваля или вечеринки, их еще называют аниме и к-поп пати.</span></p>
+
+					<p><span style="color:#000000;">Новый товар мы завозим каждую неделю, особенно по таким аниме и к-поп группам как: наруто, токийский гуль, атака титанов, геройская академия, покемоны, пикачу, вокалоиды, хатсунемику,jojo, deathnote, onepiece, yurionice, коносуба, милый во франксе, бродячие псы, евангелион, сейлормун, унесенные призраками и другие произведения миядзаки, bts, mostax, exo, bingbang, twice, gerlsgeneration.</span></p>
+
+					<p><span style="color:#000000;">DCи Марвел мы стороной не обошли: наушники, школьные рюкзаки, тетради, плакаты, брелоки и фигурки &ndash; все это вы можете купить в нашем магазине или заказать доставку.</span></p>
+
+					<p><span style="color:#000000;">&nbsp;У нас есть все виды оригинальных фигурок из Японии, вы можете купить такие фигурки, как: фигма(figma), нендороид(nendoroid), rah, figuarts, cu-poche, bjdшарнирные реалистичные куклы и многое другое.</span></p>
+
+					<p><span style="color:#000000;">Наушники в нашем магазине проходят проверку перед продажей и подлежат возврату /обмену в течение 14ти дней с момента покупки.</span></p>
+
+					<p><span style="color:#000000;">Огромные подушки для обнимания дакимакуры(dakimakura) находятся в разделе подушки, там же мини-дакимакуры, 150 на 50 сантиметров, 100 на 40см и обычные аниме подушки всегда в наличии, купить их можно в 1 клик.</span></p>
+
+					<p><span style="color:#000000;">Маски, Киги (kigurumi) и цветные, яркие парикиотлично дополнят ваш косплей. В наличии Розовые парики, голубые и синие, зеленые и прочие цвета.</span></p>
+
+					<p><span style="color:#000000;">Сладости, супы, газировку, соки, жвачки, шоколад, поки, mochi, конфеты и печение мы доставляем не только из Японии, но и из Тайланда не дорого, сертификаты и состав на русском языке обязательно присутствуют. Моти &ndash; традиционные японские сладости из рисового теста с начинкой. Палочки из печенья в шоколаде &ndash; Pocky можно встретить в большинстве аниме сериалов и дорамах. Японские комиксы манга и корейские манхва -любимое чтиво наших клиентов. Манга продается с такими ограничениями, как 12+, 16+ и 18+.</span></p>
+
+					<p><span style="color:#000000;">Билеты на аниме вечеринки и фестивали можно купить как в самом магазине в Москве так и на сайте аниме, гик и к-поп магазина Няпи. В продаже подарочные сертификаты на день рождения, новый год и любой другой праздник.</span></p>
+
+					<p><span style="color:#000000;">Аниме одежда, к-поп товары, браслеты, брелоки, плакаты, наклейки, значки, кошельки, обложки на паспорт, косплей, маски, кигуруми, японские коробочки для обеда &ndash; бенто, шапки, шарфы,карты,&nbsp; сувенирные катаны и другое оружие, кунаи, банданы Наруто, ключи Люси, книги и комиксы, коврики для мышки обычные и 3д, колготки-чулки кошки, милые носочки с 3D печатью, чулки японской школьницы, кольца из аниме, яркая краска для волос, кружки и термосы с аниме картинками, кулоны и подвески, не обычные контейнеры для линз, ранобе на русском, мягкие игрушки Пикачу и прочие, наушники капельки и блютус, подарочная упаковка и банты, пеналы для школы bts, календари аниме, ручки, серьги и заколки, скетчбук для рисования, сумки и рюкзаки атака титанов, тетради, дневники, блокноты, неко ушки, кошачье хвостики, лапки, чокеры, толстовки, куртка атака титанов, плащ атака титанов, огромный выбор реалистичных аниме фигурок дешево, футболки с аниме героями, аниме чехол на телефон - все это можно купить в аниме магазине Няпи в Москве или заказать через сайт, у нас работает доставка.</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="gallery_bl_wrapper" style="width: 1823px;" data-user_id="6801428925" data-access_token="6801428925.39eb734.2576ce05c49245aeacfacedce15b4638" data-limit="20">
+	<div class="gallery_bl_wrap">
+		<div class="gallery_bl_body">
+			<div class="gallery_bl_title"><span>Наш магазин</span></div>
+			<div class="gallery_bl_items no_inst">
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/GTjaO_Ed8wCtZuceiXac3Q/700c700/d/20181013_220628.jpg">
+						<img class="lazy_img" src="{%static 'image/20181013_220628.jpg'%}" data-src="/thumb/2/GTjaO_Ed8wCtZuceiXac3Q/700c700/d/20181013_220628.jpg" alt="1" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/nA_5cdLLAwthHe_oqaw5bw/700c700/d/222_1.jpg">
+						<img class="lazy_img" src="{%static 'image/222_1.jpg'%}" data-src="/thumb/2/nA_5cdLLAwthHe_oqaw5bw/700c700/d/222_1.jpg" alt="2" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/VDjOd51A27OauSevgfQ3uw/700c700/d/111.jpg">
+						<img class="lazy_img" src="{%static 'image/111.jpg'%}" data-src="/thumb/2/VDjOd51A27OauSevgfQ3uw/700c700/d/111.jpg" alt="3" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/FEioQTHclW3zxr11aR-zAA/700c700/d/444.jpg">
+						<img class="lazy_img" src="{%static 'image/444.jpg'%}" data-src="/thumb/2/FEioQTHclW3zxr11aR-zAA/700c700/d/444.jpg" alt="4" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/QEC0x07inHpnoQT06IDqVA/700c700/d/112_0.jpg">
+						<img class="lazy_img" src="{%static 'image/112_0.jpg'%}" data-src="/thumb/2/QEC0x07inHpnoQT06IDqVA/700c700/d/112_0.jpg" alt="5" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/jlxsgdwbzSe2B6WaeoPdhg/700c700/d/113.jpg">
+						<img class="lazy_img" src="{%static 'image/113.jpg'%}" data-src="/thumb/2/jlxsgdwbzSe2B6WaeoPdhg/700c700/d/113.jpg" alt="6" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/6XYoNqcQ9-9FkedzlmNYiw/700c700/d/114.jpg">
+						<img class="lazy_img" src="{%static 'image/114.jpg'%}" data-src="/thumb/2/6XYoNqcQ9-9FkedzlmNYiw/700c700/d/114.jpg" alt="7" />
+					</a>
+				</div>
+				<div class="gallery_bl_item">
+					<a href="/thumb/2/KROT3HkRcUS-NFMRgOF64A/700c700/d/115.jpg">
+						<img class="lazy_img" src="{%static 'image/115.jpg'%}" data-src="/thumb/2/KROT3HkRcUS-NFMRgOF64A/700c700/d/115.jpg" alt="8" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- <div class="rev_bl_wrapper" style="width: 1823px;">
+	<div class="rev_svg">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1303" height="586" viewBox="0 0 1303 586">
+			<defs>
+				<path id="jk3aa" d="M1722 5699c0-141.6-114.62-256-256-256s-256 114.4-256 256c0 140.6 114.62 255 256 255 47.54 0 92.05-12.93 130-35 .2-.47 70.61 19.1 112-13-58.81-37.37-22.92-69.23-24-74 24.2-38.76 38-84.52 38-133z"/>
+				<path id="jk3ab" d="M419 5861.67c0-92.05 74.79-166.67 167.04-166.67 92.25 0 167.04 74.62 167.04 166.67 0 92.04-74.79 166.66-167.04 166.66-31.02 0-60.06-8.44-84.95-23.13 0 0-45.95 12.76-73.1-8.46 38.52-24.1 15.1-44.88 15.64-47.92a165.6 165.6 0 0 1-24.63-87.15z"/>
+				<clipPath id="jk3ac">
+					<use fill="#fff" xlink:href="#jk3aa"/>
+				</clipPath>
+				<clipPath id="jk3ad">
+					<use fill="#fff" xlink:href="#jk3ab"/>
+				</clipPath>
+			</defs>
+			<g>
+				<g opacity=".1" transform="translate(-419 -5443)">
+					<use fill="#fff" fill-opacity="0" class="rev_svg1" stroke="#000" stroke-miterlimit="50" stroke-width="3.2" clip-path="url(&quot;#jk3ac&quot;)" xlink:href="#jk3aa"/>
+				</g>
+				<g opacity=".1" transform="translate(-419 -5443)">
+					<use fill="#fff" fill-opacity="0" class="rev_svg2" stroke="#000" stroke-miterlimit="50" stroke-width="3.2" clip-path="url(&quot;#jk3ad&quot;)" xlink:href="#jk3ab"/>
+				</g>
+			</g>
+		</svg>
+	</div>
+	<div class="rev_bl_wrap">
+		<div class="rev_bl_items_wr">
+			<div class="slick_prev_wr">
+				<button class="slick-prev"></button>
+				<span class="prev_title"></span>
+			</div>
+			<div class="slick_next_wr">
+				<span class="next_title"></span>
+				<button class="slick-next"></button>
+			</div>
+			<div class="rev_bl_items_wr_in">
+				<div class="rev_bg"></div>
+				<div class="rev_bl_items">
+
+					<div class="rev_bl_item">
+						<div class="rev_item_in">
+
+							<div class="item_title">Софья Адмиралова</div>
+							<div class="item_body">
+								<div class="item_pic_wr">
+									<div class="item_pic"><img src="/thumb/2/dtl089SHXlpcQDwG-d7pKA/260c260/d/toqqpzsf3ea_0.jpg" alt="Софья Адмиралова" /></div>
+								</div>
+								<div class="item_text">
+									Сегодня был мой первый поход в 'Няпи'. 
+									Безумно добрые, вежливые продавцы, классная музыка в магазине (всякие аниме-опенинги, k-pop, j-pop, c-pop), было очень приятно выбирать товар и слушать любимую музыку. (๑˃ᴗ˂)
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="rev_bl_item">
+						<div class="rev_item_in">
+
+							<div class="item_title">Кристина Коблова</div>
+							<div class="item_body">
+								<div class="item_pic_wr">
+									<div class="item_pic"><img src="/thumb/2/KcnF8i6GziLuePkVhto6aQ/260c260/d/kmvn2n6aoai_0.jpg" alt="Кристина Коблова" /></div>
+								</div>
+								<div class="item_text">
+									Как всегда только позитив и добро от этого магазина 
+									Спасибо большое ❤ В какой раз приезжаю , ещё не разу не разочаровалась
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="rev_bl_item">
+						<div class="rev_item_in">
+
+							<div class="item_title">Елизавета Третьякова</div>
+							<div class="item_body">
+								<div class="item_pic_wr">
+									<div class="item_pic"><img src="/thumb/2/eiULzwpCQJ0YsdyITZbaFQ/260c260/d/tby5qmarwo8.jpg" alt="Елизавета Третьякова" /></div>
+								</div>
+								<div class="item_text">
+									Позитивные продавцы, много всего интересного да и цена позволяет купить что душа хочет . Очень благодарна Няпи за их работу и креативность , благодаря им всю стену смогла украсить яркими плакатами , так же спасибо за чудесного Чую . Портфель так самый яркий . 
+									Спасибо большое Няпи :3
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="rev_bl_item">
+						<div class="rev_item_in">
+
+							<div class="item_title">Екатерина Фанта</div>
+							<div class="item_body">
+								<div class="item_pic_wr">
+									<div class="item_pic"><img src="/thumb/2/PGEgQ3Wnz9re4Te_6AQUkA/260c260/d/jyonn-pxnxy.jpg" alt="Екатерина Фанта" /></div>
+								</div>
+								<div class="item_text">
+									Cегодня была в Няпи первый раз. очень круто! 
+									работники добрые. Получила очень много плюх в подарок! огромное спасибо!
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="rev_btn">
+			<a href="/otzyvy"><span></span>Оставить отзыв</a>
+		</div>
+	</div>
+</div>
+ -->
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+</body>
+</html>

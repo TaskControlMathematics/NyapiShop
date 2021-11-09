@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Оплата  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class = "main_link" href="{% url 'shop:pomosh' %}">Помощь</a>  /  <span>Способы оплаты</span> </div>
+    <div class="static_title"><h1>Способы оплаты</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+			
+
+
+			<h2>СПОСОБЫ ДОСТАВКИ:<br>
+				<br>
+				<strong><span style="font-size:15pt;">Москва:</span></strong></h2>
+
+				<ul>
+					<li>
+						<p><span style="font-size:12pt;">Самовывоз</span></p>
+					</li>
+					<li>
+						<p><span style="font-size:12pt;">Курьер до метро</span></p>
+					</li>
+					<li>
+						<p><span style="font-size:12pt;">Курьер до дома/работы</span></p>
+					</li>
+				</ul>
+
+				<p><strong><span style="font-size:15pt;">Московская область:</span></strong></p>
+
+				<ul>
+					<li>
+						<p><span style="font-size:12pt;">Курьер</span></p>
+					</li>
+					<li>
+						<p><span style="font-size:12pt;">Почта</span></p>
+					</li>
+				</ul>
+
+				<p><strong><span style="font-size:15pt;">По России:</span></strong></p>
+
+				<ul>
+					<li>
+						<p><span style="font-size:12pt;">Почта</span></p>
+					</li>
+					<li>
+						<p><span style="font-size:12pt;">СДЕК</span><br>
+						&nbsp;</p>
+					</li>
+				</ul>
+
+				<h2>СПОСОБЫ ОПЛАТЫ:</h2>
+
+				<p><strong><span style="font-size:15pt;">При самовывозе</span></strong></p>
+
+				<p><span style="font-size:12pt;">Оплата на сайте;&nbsp;в&nbsp;магазине: за наличные, картой, Pay Pass</span></p>
+
+				<p><strong><span style="font-size:15pt;">При доставке курьером</span></strong></p>
+
+				<p><span style="font-size:12pt;">Оплата на сайте, наличными курьеру при получении</span></p>
+
+				<p><strong><span style="font-size:15pt;">При заказе почтой по России</span></strong></p>
+
+				<p><span style="font-size:12pt;">Оплата на сайте</span></p>
+
+				<div class="localtabs">
+					<ul>
+						<li class="">
+							<div class="localtabs__title"><a href="#">Наличными <span></span></a></div>
+							<div class="localtabs__body" style="padding-left:20px;">
+								<span style="font-size:18pt;">Оплатить покупки можно наличными при получении. Убедительная просьба вначале ознакомиться с товаром, убедиться в отсутствии дефектов в присутствии курьера, после чего оплачивать сумму.</span>
+							</div>
+						</li>
+						<li class="">
+							<div class="localtabs__title"><a href="#">Онлайн-оплата платежной картой Visa и MasterCard <span></span></a></div>
+							<div class="localtabs__body" style="padding-left:20px;">
+								<span style="font-size:18pt;">Открыта возможность оплаты покупок посредством карт Visa и MasterCard. Для этого перейдите в корзину магазина, введите сумму платежа, после чего нажмите кнопку «Оплатить».</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+
+
+
+			</div>
+        
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

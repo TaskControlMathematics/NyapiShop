@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Настройки пользователя  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+	<link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_page">
+	<div class="user_main_wrap">
+		<div class="user_info_tree">
+			Главная  /  Пользователи  /  Мой кабинет
+		</div>
+		<div class="user_info_title">
+			<h1>Мой кабинет</h1>
+			
+		</div>
+		<form class="logout_form_settings" method="POST">{% csrf_token %}
+			<div class="user_buttons">
+				<a class="button_link_user " href="{% url 'shop:user_info' %}">Мой кабинет</a>
+				<a class="button_link_user this_user_page" href="#">Личные данные</a>
+				<a class="button_link_user" href="{% url 'shop:password_forgot' %}">Смена пароля</a>
+				<a class="button_logout_setting" href="{% url 'shop:main' %}" data-user_logout ={{user}}>Выйти</a>
+
+			</div>
+
+			<div class="user_home_page_edit">
+				<br>
+				<span>Имя</span>  <input type="text" name="user_name" value="{{user_info.name}}"> 
+				<br>
+				<br>
+				<span>Фамилия</span> <input type="text" name="user_sirname" value="{{user_info.sirname}}"> 
+				<br>
+				<br>
+				<span>Отчество</span> <input type="text" name="user_secname" value="{{user_info.secname}}"> 
+				<br>
+				<br>
+				<span>Телефон</span> <input type="text" name="user_phone" value="{{user_info.phone}}"> 
+				<br>
+				<br>
+				<span>Комментарий</span>  <textarea  style = "margin-top: -20px;margin-left: 180px;" id="user_comment" cols="60" rows="5">{{user_info.comment}} </textarea> 
+				<br>
+				<br>
+				<span>Страна</span>  <input type="text" name="user_country" value="{{user_info.country}}"> 
+				<br>
+				<button class="button_save_sattings" type="submit">Сохранить</button>
+			</div>
+		</form>
+		
+	</div>
+</div>
+{% endblock %}
+</body>
+</html>

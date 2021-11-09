@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Пользовательское соглашение  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="auth_wrapqsad">
+	<div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <span>Авторизация</span> 
+		</div>
+		<div class="regisred_title">Авторизация</div>
+		<div class="auth_main_wrap">
+			<div class="auth_main_page">
+				<div class="auth_body">
+					<form method="POST"> {% csrf_token %}
+						<div class="auth_email_body">
+							<div class="auth_email_title">E-mail:</div>
+							{{formauth.username}}
+						</div>
+						<div class="auth_email_body">
+							<div class="auth_email_title"> Пароль/Секретный ключ:<p><a href="{% url 'shop:password_forgot' %}">Забыли пароль?</a></p></div>
+							{{formauth.password}}
+						</div>
+						<div class="auth_button_auth"><button>Вход</button></div>
+						<div class="auth_button_reg"><a href="{% url 'shop:registred' %}">Регистрация</a></div>
+						<div class="registartion_capcha">Я согласен(на) на обработку моих персональных данных. <a href="{%url 'shop:user_agreement' %}">Подробнее</a></div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="auth_notoice">Внимание! Для корректной работы у Вас в браузере должна быть включена поддержка cookie. В случае если по каким-либо техническим причинам передача и хранение cookie у Вас не поддерживается, вход в систему будет недоступен. </div>
+</div>
+<!--{{formauth}}-->
+<!--<div class="user_agreement_class">-->
+<!--    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class="main_link" href="#">Пользователи</a>  /  <span>Пользовательское соглашение</span> </div>-->
+<!--</div>-->
+{% endblock %}
+</body>
+</html>

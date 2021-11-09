@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+<!-- <a href="#openModal">Открыть модальное окно</a> -->
+<div id="openModal" class="modalDialog">
+    <div>
+        <a href="#close" title="Закрыть" class="close_modal">X</a>
+        <div class="left_modal_wrap">
+            <div class="left_modal_body">
+                {% if not user.is_authenticated %}
+                    <a class="user_auth_modal" href="{% url 'shop:auth' %}"><img class="image_user" src="{%static 'image/user.svg'%}" width="40" height="40"> Войти</a>
+                {% else %}
+                    <a class="user_auth_modal_auth" href="{% url 'shop:user_info' %}"><img class="image_user" src="{%static 'image/user.svg'%}" width="40" height="40"> Личный кабинет</a>
+                {% endif %}
+                <div class="other_link_modal" >
+                    <a class="modal_link" href="{% url 'shop:main' %}">Главная</a>
+                    <a class="modal_link" href="{% url 'shop:dostavka' %}">Доставка и оплата</a>
+                    <a class="modal_link" href="{% url 'shop:aktsii' %}">Акции</a>
+                    <a class="modal_link" href="{% url 'shop:kontakty' %}">Контакты</a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="right_modal_wrap">
+            
+        </div>
+    </div>
+</div>
+<body>
+    <div class="main_qwe">
+        <div class="menu_button">
+            <a href="#openModal"><img src="{%static 'image/menu.svg'%}"></a>
+
+        </div>
+        <div class="search_button">
+            <img src="{%static 'image/search.svg'%}">
+        </div>
+        <div class="checkout_button">
+            <a href="{% url 'orders:checkout' %}">
+                <div class="cart-container">
+                    <img class="static-navbar-right-cart-image" src="{%static 'image/cartm.svg'%}" width="40" height="40">
+                    <div class="static-navbar-right-cart-count">{{products_total_count}}</div>
+                    <div class="animate_checkout"><img src="{%static 'image/index.svg'%}"></div>
+                </div>
+
+                <ul></ul>
+            </a>
+
+        </div>
+    <!-- <div class="top-navbar">
+        <div class="static-navbar">
+            <div class="static-navbar-left">
+                <div class="static-navbar-left-menu">menu</div>
+                <div class="static-navbar-left-search">srh</div>
+            </div>
+            <div class="static-navbar-right">
+                <a href="{% url 'orders:checkout' %}">
+                    <div class="cart-container">
+                        <div class="static-navbar-right-cart-image">img</div>
+                        <div class="static-navbar-right-cart-count"><span>{{products_total_count}}</span></div>
+                        <div class="static-navbar-right-cart" >q</div>
+                    </div>
+                    
+                    <ul></ul>
+                </a>
+                
+            </div>
+        </div> -->
+        <div class="site-wrapper">
+            <div class="header_top_wrapper">
+                <div class="header_top_wrap ">
+                    <div class="header_l_block ">
+                        <form action="{% url 'shop:main' %}" method="get" class="searchForm">
+                            <input name="q"  type="text" placeholder="Поиск">
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                    <div class="header_m_block upd_block ">
+                        <div class="site_name_wrap ">
+                            <div class="site_name  "><a href="{% url 'shop:main' %}"><span>Аниме-магазин НЯПИ</span></a></div>
+                            
+                            <div class="site_desc site_name ">
+                                <a href="tel:8 (925) 454-77-95">8 (925) 454-77-95, </a>
+                                <a href="tel:8 (929) 516-22-41">8 (929) 516-22-41</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header_r_block text-centre  ">
+                        <!-- <div class="header_call"><span> -->Заказать звонок<!-- </span></div> -->
+                        <!-- <div class="c" -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "header-menu-wrapper ">
+              <div class="menu-wrap">
+
+                <ul class="topmenu btn-toolbar ">
+                    <li >
+                        <a id="dLabel"  href="http://127.0.0.1:8000/catalog/120">
+                            Аниме товары 
+                        </a>
+
+                        <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/239">Аниме подушки, дакимакуры</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/18">Дакимакуры 150х50 </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/200"><span>Дакимакуры «Моя геройская академия»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/21"><span>Дакимакуры «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/166"><span>Дакимакуры «Милый во Франксе»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/224"><span>Дакимакуры «Вокалоиды»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/243"><span>Дакимакуры «Темный дворецкий»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/105"><span>Дакимакуры «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/205"><span>Дакимакуры «Евангелион»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/176"><span>Дакимакуры «ДжоДжо»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/113"><span>Дакимакуры «Великий из бродячих псов»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/214"><span>Дакимакуры «Баскетбол Куроко»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/103"><span>Дакимакуры «Последний серафим»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/72"><span>Дакимакуры «Токийский гуль»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Дакимакуры «Коносуба»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/60"><span>Дакимакуры «Бесконечное лето»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/138"><span>Дакимакуры «Мастера меча онлайн»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/101"><span>Дакимакуры «Блич»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/44"><span>Дакимакуры «Рандеву с жизнью»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/90"><span>Дакимакуры «Дракон-горничная Кобаяши-сан»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/42"><span>Дакимакуры «Ангел кровопролития»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/234"><span>Дакимакуры «Клуб легкой музыки кэйон»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/114"><span>Дакимакуры «Судьба»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/110"><span>Дакимакуры «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/36"><span>Дакимакуры «Волчица и пряности»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/30"><span>Дакимакуры «Клинок рассекающий демонов»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/129"><span>Дакимакуры «Бездомный Бог»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/91"><span>Дакимакуры «Юрий на льду»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/7"><span>Дакимакуры «Овервотч»</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/58">Дакимакуры 100х40 </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/223"><span>Дакимакуры «Сейлор Мун»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/236"><span>Дакимакуры «Класс убийц»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/16"><span>Дакимакуры «Ванпанчмен»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/245"><span>Дакимакуры «Ванпис»</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/65">Миниподушка 16,5х5см </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/208"><span>Мини-дакимакуры «Моя геройская академия»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/38"><span>Мини-дакимакуры «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/79"><span>Мини-дакимакуры «Милый во Франксе»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/203"><span>Мини-дакимакуры «Вокалоиды»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/47"><span>Мини-дакимакуры «Темный дворецкий»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/227"><span>Мини-дакимакуры «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/211"><span>Мини-дакимакуры «Евангелион»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/161"><span>Мини-дакимакуры «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/1"><span>Мини-дакимакуры «Невероятные приключения ДжоДжо»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/181"><span>Мини-дакимакуры «Великий из бродячих псов»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/53"><span>Мини-дакимакуры «Магистр дьявольского культа»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/193"><span>Мини-дакимакуры «Юрий на льду»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/143"><span>Мини-дакимакуры «Дракон-горничная госпожи Кобаяши-сан»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/194"><span>Мини-дакимакуры «Ниер автомата»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/139"><span>Мини-дакимакуры «Наруто»</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/68">Квадратные </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#"><span>Подушки «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Подушки «Великий из бродячих псов»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Подушки «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Подушки «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Подушки «Двуличная сестренка Умару»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/84"><span>Подушки «Наруто»</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/122">Прямоугольные </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#"><span>Прямоугольные подушки «Вокалоиды»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Прямоугольные подушки «Атака титанов»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Прямоугольные подушки «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/63"><span>Прямоугольные подушки «Мастера меча онлайн»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Прямоугольные подушки «Сказка о хвосте феи»</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/83">Рюкзаки и сумки</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/242">Рюкзаки </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/108"><span>Рюкзаки «Моя геройская академия»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/152"><span>Рюкзаки «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/48"><span>Рюкзаки «Милый во Франксе»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Рюкзаки «Гарри Поттер»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/28"><span>Рюкзаки «Сказка о хвосте феи»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/109"><span>Рюкзаки «Темный дворецкий»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/94"><span>Рюкзаки «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Рюкзаки «Школа отчаяния»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Рюкзаки «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/198"><span>Рюкзаки «Невероятные приключения ДжоДжо»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/184"><span>Рюкзаки «Токийский гуль»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Рюкзаки «Миядзаки»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/167"><span>Рюкзаки «Юрий на льду»</span></a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/86">Сумки </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/237"><span>Сумки «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Сумки «Моя геройская академия»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Сумки «Невероятные приключения ДжоДжо»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/241"><span>Сумки «Наруто»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Сумки «Милый во Франксе»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/5"><span>Сумки «Темный дворецкий»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Сумки «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Сумки «Двуличная сестренка Умару»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Сумки «Салли фейс»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Сумки «Токийский гуль»</span></a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/40">Канцелярия</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/104">Плакаты </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/134"><span>Плакаты «К-поп»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Плакаты «Миядзаки»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Плакаты «Юрий на льду»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/177"><span>Плакаты «Атака титанов»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Плакаты «Моя геройская академия»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/135"><span>Плакаты «Невероятные приключения ДжоДжо»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Плакаты «Наруто»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/124"><span>Плакаты «Милый во франксе»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/151"><span>Плакаты «Темный дворецкий»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Плакаты «Нет игры нет жизни»</span></a>
+                                            </li>
+                                            <li><a href="#"><span>Плакаты «Двуличная сестренка Умару»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Плакаты «Салли фейс»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/85"><span>Плакаты «Токийский гуль»</span></a>
+                                            </li>
+                                           <!--  <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-evangelion"><span>Плакаты «Евангелион»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-detrojt"><span>Плакаты «Детройт»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-ochen-priyatno-bog"><span>Плакаты «Очень приятно, Бог»</span></a> -->
+                                            <!-- </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-magistr-dyavolskogo-kulta"><span>Плакаты «Магистр дьявольского культа»</span></a> -->
+                                            <!-- </li> -->
+                                            <li><a href="http://127.0.0.1:8000/catalog/158"><span>Плакаты «Тетрадь смерти»</span></a>
+                                            </li>
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-angel-krovoprolitiya"><span>Плакаты «Ангел кровопролития»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-velikij-iz-brodyachih-psov"><span>Плакаты «Великий из бродячих псов»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-obeshchannyj-neverlend"><span>Плакаты «Обещанный Неверленд»</span></a>
+                                            </li> -->
+                                            <!-- <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-dororo"><span>Плакаты «Дороро»</span></a>
+                                            </li> -->
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-mob-psiho-100"><span>Плакаты «Моб психо 100»</span></a>
+                                                </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-shkola-otchayaniya"><span>Плакаты «Школа отчаяния»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-bananovaya-ryba"><span>Плакаты «Банановая рыба»</span></a>
+                                            </li> -->
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/73"><span>Плакаты «Жизнь в альтернативном мире с нуля»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/196"><span>Плакаты «Волчица и пряности»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/197"><span>Плакаты «Тук-Тук литературный клуб»</span></a>
+                                            </li>
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-ubijca-goblinov"><span>Плакаты «Убийца гоблинов»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-garri-potter"><span>Плакаты «Гарри Поттер»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-mastera-mecha-onlajn"><span>Плакаты «Мастера меча онлайн»</span></a>
+                                            </li> -->
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-skazka-o-hvoste-fei"><span>Плакаты «Сказка о хвосте феи»</span></a>
+                                            </li> -->
+                                            <!-- <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-volejbol"><span>Плакаты «Волейбол»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-ahegao"><span>Плакаты «Ахегао»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-vrata-shtejna"><span>Плакаты «Врата Штейна»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-van-pis"><span>Плакаты «Ван пис»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-gintama"><span>Плакаты «Гинтама»</span></a>
+                                            </li>
+                                            <li> -->
+                                                <a href="http://127.0.0.1:8000/catalog/62"><span>Плакаты «Вокалоиды»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/195"><span>Плакаты «Ванпанчмен»</span></a>
+                                            </li>
+                                            <!-- <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/plakaty-klinok-rassekayushchij-demonov"><span>Плакаты «Клинок рассекающий демонов»</span></a>
+                                            </li> -->
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://127.0.0.1:8000/catalog/69"><span>Значки</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/121"><span>Наклейки</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Ручки"><span>Ручки</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Блокноты"><span>Блокноты</span></a></li> -->
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/41">Обложки для документов</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/213"><span>На паспорт</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/244"><span>На студенческий</span></a>
+                                            </li>
+                                            <!-- <li>
+                                                <a href="https://nyapi.ru/catalog/anime-stationery-document-covers-travel-ticket"><span>На проездной</span></a>
+                                            </li> -->
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/80"><span>Дневники</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Пеналы"><span>Пеналы</span></a> -->
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Календари"><span>Календари</span></a> -->
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Линейкиипрочее"><span>Линейки и прочее</span></a> -->
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Скетчбуки"><span>Скетчбуки</span></a> -->
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/78"><span>Тетради</span></a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/145">Одежда</a>
+                                <ul class="dropdown-menu">
+
+                                    <li><a href="http://127.0.0.1:8000/catalog/49"><span>Кепки</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/70"><span>Свитера|Толстовки|Худи</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/179"><span>Шапки</span></a>
+                                    </li>
+                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Шарфы"><span>Шарфы</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Купальники"><span>Купальники</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Курткииплащи"><span>Куртки и плащи</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Майкиифутболки"><span>Майки и футболки</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/131"><span>Носки|Чулки|Колготки</span></a>
+                                    </li>
+                                   <!--  <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Полотенцаибельё"><span>Полотенца и бельё</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Волкошапки"><span>Волкошапки</span></a> -->
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/155"><span>Нашивки и разное</span></a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/225">Косплей</a>
+                                <ul class="dropdown-menu">
+
+
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/153">Парики </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/112"><span>Парики 10-50см</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/199"><span>Парики 60-150см</span></a>
+                                            </li>
+                                            <!-- <li>
+                                                <a href="https://nyapi.ru/catalog/pryadi-na-zakolkakh"><span>Пряди на заколках</span></a>
+                                            </li> -->
+
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="http://127.0.0.1:8000/catalog/228"><span>Костюмы</span></a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Японскаяшкольнаяформа"><span>Японская школьная форма</span></a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Катаны|Кунаи|Мечи"><span>Катаны|Кунаи|Мечи</span></a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Некоушкииободки"><span>Неко ушки и ободки</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/136"><span>Ключи Люси</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Косметика"><span>Косметика</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Краскадляволос"><span>Краска для волос</span></a>
+                                    </li>
+ -->
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/32">Маски </a>
+                                        <!-- <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/chernye-maski-na-rot"><span>Черные маски на рот</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/chernaya-maska-zubik"><span>Черная маска «Зубик»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/chernaya-maska-mishka"><span>Черная маска «Мишка»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/belaya-maska-koshka"><span>Белая маска «Кошка»</span></a>
+                                            </li>
+
+                                        </ul> -->
+                                    </li>
+
+<!-- 
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Банданы«Наруто»"><span>Банданы «Наруто»</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/50"><span>Хвостики</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Атрибуты"><span>Атрибуты</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/206"><span>Обувь</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Лапки"><span>Лапки</span></a>
+                                    </li> -->
+
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="http://127.0.0.1:8000/catalog/190">Стафф и аксесуары</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="http://127.0.0.1:8000/catalog/46"><span>Брелоки и подвески</span></a>
+                                    </li>
+                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Кружки"><span>Кружки</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Кошельки"><span>Кошельки</span></a></li> -->
+                                    <li class="dropdown-submenu">
+                                        <a href="http://127.0.0.1:8000/catalog/185">Коврики для мыши </a>
+                                        <!-- <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="https://nyapi.ru/catalog/anime-staff-and-accessories-mouse-pads-3d"><span>3D</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="https://nyapi.ru/catalog/anime-staff-and-accessories-mouse-pads-common"><span>Обычные</span></a>
+                                            </li>
+
+                                        </ul> -->
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://127.0.0.1:8000/catalog/226"><span>Наушники</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/99"><span>Перчатки</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://127.0.0.1:8000/catalog/235"><span>Селфи-палки</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/20"><span>Часы</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://127.0.0.1:8000/catalog/150"><span>Чехлы и подставки на телефон</span></a>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Бенто"><span>Бенто</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/149"><span>Заглушки | Подвески на телефон</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/221"><span>Очешники и салфетки</span></a>
+                                    </li>
+                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Карты"><span>Карты</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Пазлы"><span>Пазлы</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Магниты"><span>Магниты</span></a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Карточкиидругое"><span>Карточки и другое</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Зонты"><span>Зонты</span></a>
+                                    </li> -->
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Ремни"><span>Ремни</span></a>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Подарочныенаборы"><span>Подарочные наборы</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Вентиляторы"><span>Вентиляторы</span></a>
+                                    </li> -->
+
+                                </ul>
+                            </li>
+                            <li><a href="http://127.0.0.1:8000/catalog/54"><span>Мягкие игрушки</span></a>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="http://127.0.0.1:8000/catalog/160">Бижутерия</a>
+                                    <ul class="dropdown-menu">
+                                       <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Браслеты"><span>Браслеты</span></a>
+                                        </li>
+                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Кольца"><span>Кольца</span></a>
+                                        </li>
+                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Кулоны"><span>Кулоны</span></a>
+                                        </li> -->
+                                        <li>
+                                            <a href="http://127.0.0.1:8000/catalog/132"><span>Серьги и заколки</span></a>
+                                        </li>
+                                        <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Чокеры"><span>Чокеры</span></a>
+                                        </li>
+                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Колье"><span>Колье</span></a>
+                                        </li> -->
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a id="dLabel" href="http://127.0.0.1:8000/catalog/130">
+                                Манга <span class="caret"></span>
+                            </a>
+                            <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a href="http://127.0.0.1:8000/catalog/43"><span>Японские комиксы</span></a>
+                                </li>
+                                <li><a href="http://127.0.0.1:8000/catalog/168"><span>Ранобэ</span></a>
+                                </li>
+                                <li><a href="http://127.0.0.1:8000/catalog/137"><span>18+</span></a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a id="dLabel"   href="http://127.0.0.1:8000/catalog/140">
+                                Фигурки <span class="caret"></span>
+                            </a>
+                            <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="http://127.0.0.1:8000/catalog/180">Оригинальные аниме фигурки из японии</a>
+                                    <ul class="dropdown-menu">
+
+                                        <li class="dropdown-submenu">
+                                            <a href="http://127.0.0.1:8000/catalog/146">Аниме фигурки статичные</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/164"><span>Фигурки «Жизнь в альтернативном мире с нуля»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/157"><span>Фигурки «Атака титанов»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/2"><span>Фигурки «Код гиасс»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/154"><span>Фигурки «Мадока»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/175"><span>Фигурки «Мику Хатсуне»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/125"><span>Фигурки «Невероятные приключения ДжоДжо»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/115"><span>Фигурки «Наруто»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/230"><span>Фигурки «Истории монстров»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/14"><span>Фигурки «Моя геройская академия»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/218"><span>Фигурки «Ван пис»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/107"><span>Фигурки «Судьба»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/182"><span>Фигурки «Живая любовь»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/29"><span>Фигурки «Евангелион»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/89"><span>Фигурки «Меланхолия Харухи Сузумии»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/3"><span>Фигурки «Лаки стар»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/93"><span>Фигурки «Вокалоид Лука»</span></a>
+                                                </li>
+                                               <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-shiro"><span>Фигурки «Широ»</span></a>
+                                                </li> -->
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-sinij-ekzorcist"><span>Фигурки «Синий экзорцист»</span></a>
+                                                </li> -->
+                                                <li><a href="http://127.0.0.1:8000/catalog/4"><span>Фигурки «О моем перерождении в слизь»</span></a>
+                                                </li>
+                                               <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-kagamine-rin"><span>Фигурки «Кагамине Рин»</span></a>
+                                                </li> -->
+                                                <li><a href="http://127.0.0.1:8000/catalog/100"><span>Фигурки «Стрелок с темной горы»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/202"><span>Фигурки «Ванпанчмен»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/39"><span>Фигурки «Врата Штейна»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/220"><span>Фигурки «Баскетбол куроко»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/216"><span>Фигурки «Тоторо»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/77"><span>Фигурки «До десяти»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/127"><span>Фигурки «DC»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/67"><span>Фигурки «Гуррен Лагган»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/96"><span>Фигурки «Любовные неприятности»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/183"><span>Фигурки «Темный дворецкий»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/98"><span>Фигурки «Флотская коллекция»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/222"><span>Фигурки «Собирательница карт Сакура»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/219"><span>Фигурки «К-он»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/75"><span>Фигурки «Волейбол»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/34"><span>Фигурки «Звездные войны»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/106"><span>Фигурки «Кагамине Лен»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/187"><span>Фигурки «Коносуба»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/144"><span>Фигурки «Идолмастер»</span></a>
+                                                </li>
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-super-soniko"><span>Фигурки «Супер Сонико»</span></a>
+                                                </li> -->
+                                                <li><a href="http://127.0.0.1:8000/catalog/74"><span>Фигурки по игре «Персона»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/10"><span>Фигурки «Король Шаманов»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/8"><span>Фигурки «Ускоренный мир»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/24"><span>Фигурки «Драгон бол»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/51"><span>Фигурки «Торадора»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/71"><span>Фигурки «Тетрадь дружбы Натсуме»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/6"><span>Фигурки «Гарри Поттер»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/142"><span>Фигурки «Токийский гуль»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/45"><span>Фигурки «Хорошенькое лекарство»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/192"><span>Фигурки «Ангельские ритмы»</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/117"><span>Фигурки «Куронеко»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/118"><span>Фигурки «Эроманга сенсей»</span></a>
+                                                </li>
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-stalnoj-alhimik"><span>Фигурки «Стальной алхимик»</span></a>
+                                                </li> -->
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-ubej-ili-umri"><span>Фигурки «Убей или умри»</span></a>
+                                                </li> -->
+                                               <!--  <li>
+                                                    <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-gintama"><span>Фигурки «Гинтама»</span></a>
+                                                </li> -->
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-obeshchannyj-neverlend"><span>Фигурки «Обещанный неверленд»</span></a> -->
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/119"><span>Фигурки «Сейлор мун»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/11"><span>Фигурки «Кайто»</span></a>
+                                                </li>
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-milyj-vo-frankse"><span>Фигурки «Милый во франксе»</span></a>
+                                                </li> -->
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-shkola-otchayaniya"><span>Фигурки «Школа отчаяния»</span></a>
+                                                </li> -->
+                                                <li><a href="http://127.0.0.1:8000/catalog/178"><span>Фигурки «Унесенные призраками»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/92"><span>Фигурки «Рандеву с жизнью»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/174"><span>Фигурки «Touhou Project»</span></a>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/76"><span>Фигурки «Штурмовые ведьмы»</span></a>
+                                                </li>
+                                                <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-kantai-collection"><span>Аниме фигурки «Kantai Collection»</span></a>
+                                                </li> -->
+                                               <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-made-in-abyss"><span>Аниме фигурки «Made in Abyss»</span></a>
+                                                </li> -->
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="http://127.0.0.1:8000/catalog/9">Фигма, подвижные, аниме фигурки </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="http://127.0.0.1:8000/catalog/162">Аниме фигурки figma</a>
+                                                    <ul class="dropdown-menu">
+                                                       <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-ataka-titanov"><span>Фигурки фигма «Атака титанов»</span></a>
+                                                        </li>
+                                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-madoka"><span>Фигурки фигма «Мадока»</span></a>
+                                                        </li> -->
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/31"><span>Фигурки фигма «Вокалоиды Мику»</span></a>
+                                                        </li>
+                                                        <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-konosuba"><span>Фигурки фигма «KonoSuba»</span></a>
+                                                        </li>
+                                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-sudba"><span>Фигурки фигма «Судьба»</span></a>
+                                                        </li>
+                                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-schastlivaya-zvezda"><span>Фигурки фигма «Счастливая звезда»</span></a>
+                                                        </li>
+                                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-kejon"><span>Фигурки фигма «Кэйон»</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-black-rock-shooter"><span>Фигурки фигма «Black Rock Shooter»</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-melanholiya-haruhi-sudzumii"><span>Фигурки фигма «Меланхолия Харухи Судзумии»</span></a>
+                                                        </li>
+                                                        <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-stiens"><span>Фигурки фигма «Stiens»</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-bakemonogatari"><span>Фигурки фигма «Bakemonogatari»</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-my-hero-academia"><span>Фигурки фигма «My hero academia»</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-figma-re-zero-starting-life-in-another-world"><span>Фигурки фигма «Re:ZERO - Starting Life in Another World»</span></a>
+                                                        </li> -->
+
+                                                    </ul>
+                                                </li>
+                                                <li><a href="http://127.0.0.1:8000/catalog/141"><span>Аниме фигурки «Super Action Statue»</span></a>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="http://127.0.0.1:8000/catalog/33">Нендроид, аниме фигурки со сменными деталями </a>
+                                                <ul class="dropdown-menu">
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-no-game-no-life"><span>Аниме фигурки нендороид «No Game No Life»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/212"><span>Аниме фигурки нендороид «Мастера меча онлайн»</span></a>
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-kill-la-kill"><span>Аниме фигурки нендороид «Kill la Kill»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/23"><span>Аниме фигурки нендороид «Тетрадь смерти»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/97"><span>Аниме фигурки нендороид «ДжоДжо»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/88"><span>Аниме фигурки нендороид «Овервотч»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/191"><span>Аниме фигурки нендороид «Этот замечательный мир»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/82"><span>Аниме фигурки нендороид «Fate»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/204"><span>Аниме фигурки нендороид «Банановая Рыба»</span></a>
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-magistr-dyavolskogo-kulta"><span>Аниме фигурки нендороид «Магистр дьявольского культа»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/188"><span>Аниме фигурки нендороид «Психопаспорт»</span></a>
+                                                    </li>
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-hetaliya"><span>Аниме фигурки нендороид «Хеталия»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/57"><span>Аниме фигурки нендороид «Стрелок с черной скалы»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/215"><span>Аниме фигурки нендороид «Персона 5»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/172"><span>Аниме фигурки нендороид «Проект школьные идолы»</span></a>
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-stalnoj-alhimik"><span>Аниме фигурки нендороид «Стальной алхимик»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/82"><span>Аниме фигурки нендороид «Милый во Франксе»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/186"><span>Аниме фигурки нендороид «Date a Live»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/55"><span>Аниме фигурки нендороид «Жизнь в альтернативном мире с нуля»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/231"><span>Аниме фигурки нендороид «Haikyuu»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/229"><span>Аниме фигурки нендороид «Kuroko»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/17"><span>Аниме фигурки нендороид «Steins Gate»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/116"><span>Аниме фигурки нендороид «Мадока»</span></a>
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-touken-ranbu"><span>Аниме фигурки нендороид «Touken Ranbu»</span></a>
+                                                    </li> -->
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-strike-witches"><span>Аниме фигурки нендороид «Strike Witches»</span></a>
+                                                    </li> -->
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-velikij-iz-brodyachih-psov"><span>Аниме фигурки нендороид «Великий из бродячих псов»</span></a>
+                                                    </li> -->
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-dramaticheskoe-ubijstvo"><span>Аниме фигурки нендороид «Драматическое убийство»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/35"><span>Аниме фигурки нендороид «Счастливая звезда»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/233"><span>Аниме фигурки нендороид «Reborn»</span></a>
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-melancholy-of-haruhi-suzumiya"><span>Аниме фигурки нендороид «Melancholy of Haruhi Suzumiya»</span></a>
+                                                    </li> -->
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-onepunchman"><span>Аниме фигурки нендороид «Onepunchman»</span></a>
+                                                    </li> -->
+                                                   <!--  <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-my-hero-academia"><span>Аниме фигурки нендороид «My Hero Academia»</span></a>
+                                                    </li> -->
+                                                   <!--  <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-the-rising-of-the-shield-hero"><span>Аниме фигурки нендороид «The Rising of the Shield Hero»</span></a>
+                                                    </li> -->
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-the-idolmaster"><span>Аниме фигурки нендороид «The IdolMaster»</span></a>
+                                                    </li> -->
+                                                    <!-- <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/anime-figurki-nendoroid-spice-and-wolf"><span>Аниме фигурки нендороид «Spice and Wolf»</span></a>
+                                                    </li> -->
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/figurki-nendoroid-fate-grand-order"><span>Фигурки нендороид «Fate Grand Order»</span></a>
+                                                    </li> -->
+
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/87"><span>Аниме фигурки Б/У</span></a>
+                                            </li>
+
+                                           <!--  <li class="dropdown-submenu">
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/anime/Анимефигуркисроботами">Аниме фигурки с роботами </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/roboty-evangelion"><span>Роботы «Евангелион»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/figurki-gandamy-gandamy-sbornye-modeli"><span>Фигурки Гандамы, Гандамы сборные модели</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/roboty-kod-giass"><span>Роботы «Код Гиасс»</span></a>
+                                                    </li>
+
+                                                </ul>
+                                            </li> -->
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="http://127.0.0.1:8000/catalog/66">Бутлег</a>
+                                        <ul class="dropdown-menu">
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/anime/Фигуркисосменнымидеталями">Фигурки со сменными деталями</a></li> -->
+
+                                            <li><a href="http://127.0.0.1:8000/catalog/156">Подвижные фигурки</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="http://127.0.0.1:8000/catalog/148">Китайские фигурки </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="http://127.0.0.1:8000/catalog/147"><span>Китайские фигурки «Наруто»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/159"><span>Китайские фигурки «Моя геройская академия»</span></a>
+                                                    </li>
+                                                    <li><a href="http://127.0.0.1:8000/catalog/26"><span>Китайские фигурки «Вокалоиды»</span></a>
+                                                    </li>
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-van-pis"><span>Китайские фигурки «Ван пис»</span></a>
+                                                    </li> -->
+                                                    <li><a href="http://127.0.0.1:8000/catalog/133"><span>Китайские фигурки «Покемоны»</span></a>
+                                                    </li>
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-tetrad-smerti"><span>Китайские фигурки «Тетрадь смерти»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/64"><span>Китайские фигурки «Нет игры нет жизни»</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/13"><span>Китайские фигурки «Двуличная сестренка Умару»</span></a>
+                                                    </li>
+                                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-tokijskij-gul"><span>Китайские фигурки «Токийский гуль»</span></a>
+                                                    </li> -->
+                                                    <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/123"><span>Китайские фигурки «Сказка о хвосте феи»</span></a>
+                                                    </li>
+                                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-ataka-titanov"><span>Китайские фигурки «Атака титанов»</span></a>
+                                                    </li> -->
+                                                   <!--  <li>
+                                                        <a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-zhizn-v-alternativnom-mire-nulya"><span>Китайские фигурки «Жизнь в альтернативном мире нуля»</span></a>
+                                                    </li> -->
+                                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/kitajskie-figurki-temnyj-dvoreckij"><span>Китайские фигурки «Темный дворецкий»</span></a>
+                                                    </li> -->
+                                                    <li><a href="http://127.0.0.1:8000/catalog/163"><span>Китайские фигурки «Сейлор Мун»</span></a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="http://127.0.0.1:8000/catalog/95">Шарнирные куклы</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/56"><span>Японские шарнирные фигурки «Pure Neemo»</span></a>
+                                            </li>
+                                            <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/yaponskie-sharnirnye-figurki-pullip"><span>Японские шарнирные фигурки «Pullip»</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="http://127.0.0.1:8000/catalog/ %}main/yaponskie-sharnirnye-figurki-real-action-heroes"><span>Японские шарнирные фигурки «Real Action Heroes»</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/yaponskie-sharnirnye-figurki-azone"><span>Японские шарнирные фигурки «Azone»</span></a>
+                                            </li> -->
+
+                                        </ul>
+                                    </li>
+                                    <!-- <li><a href="http://127.0.0.1:8000/catalog/ %}main/Фигуркиизакрила,стенды">Фигурки из акрила, стенды</a></li> -->
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a id="dLabel" href="http://127.0.0.1:8000/catalog/61">
+                                    Кигуруми <span class="caret"></span>
+                                </a>
+                                <!-- <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"> -->
+                                   <!--  <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Единорог»"><span>Кигуруми «Единорог»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Панда»"><span>Кигуруми «Панда»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Пикачу»"><span>Кигуруми «Пикачу»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Динозавр»"><span>Кигуруми «Динозавр»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Кот»"><span>Кигуруми «Кот»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Тигр»"><span>Кигуруми «Тигр»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Лиса»"><span>Кигуруми «Лиса»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Медведь»"><span>Кигуруми «Медведь»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Стич»"><span>Кигуруми «Стич»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Олень»"><span>Кигуруми «Олень»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Жираф»"><span>Кигуруми «Жираф»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Скелет»"><span>Кигуруми «Скелет»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Птенец»"><span>Кигуруми «Птенец»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Зебра»"><span>Кигуруми «Зебра»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Коала»"><span>Кигуруми «Коала»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Слон»"><span>Кигуруми «Слон»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Ослик»"><span>Кигуруми «Ослик»</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/ %}main/Кигуруми«Тоторо»"><span>Кигуруми «Тоторо»</span></a>
+                                    </li> -->
+
+
+                                <!-- </ul> -->
+                            </li>
+
+                            <li>
+                                <a id="dLabel"  href="http://127.0.0.1:8000/catalog/209">
+                                    Еда <span class="caret"></span>
+                                </a>
+                                <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="http://127.0.0.1:8000/catalog/165">Японские сладости</a>
+                                        <!-- <ul class="dropdown-menu">
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/pocky"><span>Pocky</span></a>
+                                            </li>
+                                            <li><a href="http://127.0.0.1:8000/catalog/ %}main/mochi"><span>Mochi</span></a>
+                                            </li>
+
+                                        </ul> -->
+                                    </li>
+                                    <!-- <li>
+                                        <a href="https://nyapi.ru/catalog/japanese-and-asian-food-from-japan-drinks"><span>Напитки</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/173"><span>Лапша</span></a>
+                                    </li>
+                                   <!--  <li>
+                                        <a href="https://nyapi.ru/catalog/japanese-and-asian-food-from-japan-snacks-and-cookies"><span>Чипсы</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://nyapi.ru/catalog/japanese-and-asian-food-other-countries"><span>Азиатские продукты</span></a>
+                                    </li> -->
+                                    <li><a href="http://127.0.0.1:8000/catalog/128"><span>Европейские сладости</span></a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a id="dLabel"  href="http://127.0.0.1:8000/catalog/170">
+                                    Цветные линзы <span class="caret"></span>
+                                </a>
+                                <!-- <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                    <li><a href="https://nyapi.ru/catalog/cosplay-anime-lenses"><span>Косплей линзы</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-whites"><span>Белые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-gray"><span>Серые</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://nyapi.ru/catalog/anime-lenses-yellow-and-orange"><span>Желтые и оранжевые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-pink"><span>Розовые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-red"><span>Красные</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-purple"><span>Фиолетовые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-green"><span>Зеленые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-blue"><span>Голубые и синие</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-black"><span>Черные</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-brown"><span>Коричневые</span></a>
+                                    </li>
+                                    <li><a href="https://nyapi.ru/catalog/anime-lenses-containers"><span>Контейнеры для линз</span></a>
+                                    </li>
+
+
+                                </ul> -->
+                            </li>
+
+
+                            <li>
+                                <a id="dLabel"  href="http://127.0.0.1:8000/catalog/59">
+                                    K-pop <span class="caret"></span>
+                                </a>
+                                <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                    <li><a href="http://127.0.0.1:8000/catalog/238"><span>Товары с корейскими группами</span></a>
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/210"><span>Манхва</span></a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a id="dLabel" href="http://127.0.0.1:8000/catalog/22">
+                                    Прочее <span class="caret"></span>
+                                </a>
+                                <ul class="first dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="http://127.0.0.1:8000/catalog/171">Подарочная упаковка</a>
+                                        <!-- <ul class="dropdown-menu">
+                                            <li><a href="https://nyapi.ru/catalog/gift-wrap-bags"><span>Пакеты</span></a>
+                                            </li>
+                                            <li><a href="https://nyapi.ru/catalog/gift-wrap-boxes"><span>Коробки</span></a>
+                                            </li>
+                                            <li><a href="https://nyapi.ru/catalog/gift-wrap-candles"><span>Свечи</span></a>
+                                            </li>
+                                            <li><a href="https://nyapi.ru/catalog/gift-wrap-bows"><span>Банты</span></a>
+                                            </li>
+
+                                        </ul> -->
+                                    </li>
+                                    <li><a href="http://127.0.0.1:8000/catalog/207"><span>Гик товары: комиксы, игры, сериалы</span></a>
+
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="http://127.0.0.1:8000/catalog/27">Билеты и сертификаты</a>
+                                            <!-- <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="https://nyapi.ru/catalog/bilety-na-anime-pati"><span>Билеты на аниме пати</span></a>
+                                                </li>
+                                                <li><a href="https://nyapi.ru/catalog/tickets-and-certificates-gift"><span>Подарочные Сертификаты</span></a>
+                                                </li>
+
+                                            </ul> -->
+                                        </li>
+
+                                        <li><a href="https://nyapi.ru/catalog/anime-household-goods"><span>Хозтовары</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="slider">
+                  <div class="slide-list">
+                    <div class="slide-wrap">
+
+                      <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/120">
+                            <img src="{%static 'image/anime.png'%}" alt="" />
+                            <span class="slide-title">Аниме товары</span>
+                        </a>
+
+
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/239">
+                            <img src="{%static 'image/anime_podushki_dakimakury.png'%}" alt="" />
+                            <span class="slide-title">Аниме подушки, дакимакуры</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/18">
+                            <img src="{%static 'image/dakimakury_150kh50.png'%}" alt="" />
+                            <span class="slide-title">Дакимакуры 150х50</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/58">
+                            <img src="{%static 'image/dakimakury_100x40.png'%}" alt="" />
+                            <span class="slide-title">Дакимакуры 100х40</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/65">
+                            <img src="{%static 'image/mini-podushki_165_kh_5sm.png'%}" alt="" />
+                            <span class="slide-title">Мини подушки 16.5х5см</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/83">
+                            <img src="{%static 'image/ryukzaki_i_sumki.png'%}" alt="" />
+                            <span class="slide-title">Рюкзаки и сумки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/242">
+                            <img src="{%static 'image/ryukzaki.png'%}" alt="" />
+                            <span class="slide-title">Рюкзаки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/86">
+                            <img src="{%static 'image/sumki.png'%}" alt="" />
+                            <span class="slide-title">Сумки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/40">
+                            <img src="{%static 'image/kantselyariya.png'%}" alt="" />
+                            <span class="slide-title">Канцелярия</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/104">
+                            <img src="{%static 'image/plakaty.png'%}" alt="" />
+                            <span class="slide-title">Плакаты</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/69">
+                            <img src="{%static 'image/znachki.png'%}" alt="" />
+                            <span class="slide-title">Значки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/121">
+                            <img src="{%static 'image/nakleyki.png'%}" alt="" />
+                            <span class="slide-title">Наклейки</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/ruchki.png'%}" alt="" />
+                            <span class="slide-title">Ручки</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/sketchbuki.png'%}" alt="" />
+                            <span class="slide-title">Скечбуки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/78">
+                            <img src="{%static 'image/tetradi.png'%}" alt="" />
+                            <span class="slide-title">Тетради</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/bloknoty.png'%}" alt="" />
+                            <span class="slide-title">Блокноты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/41">
+                            <img src="{%static 'image/oblozhki_dlya_dokumentov.png'%}" alt="" />
+                            <span class="slide-title">Обложки для документов</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/penaly.png'%}" alt="" />
+                            <span class="slide-title">Пеналы</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kalendari.png'%}" alt="" />
+                            <span class="slide-title">Календари</span>
+                        </a>
+                    </div> -->
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/lineyki.png'%}" alt="" />
+                            <span class="slide-title">Линейки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/145">
+                            <img src="{%static 'image/odezhda.png'%}" alt="" />
+                            <span class="slide-title">Одежда</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/49">
+                            <img src="{%static 'image/kepki.png'%}" alt="" />
+                            <span class="slide-title">Кепки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/70">
+                            <img src="{%static 'image/svitera_tolstovki_khudi.png'%}" alt="" />
+                            <span class="slide-title">Свитера|Толстовки|Худи</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/179">
+                            <img src="{%static 'image/shapki.png'%}" alt="" />
+                            <span class="slide-title">Шапки</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/sharfy.png'%}" alt="" />
+                            <span class="slide-title">Шарфы</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kupalniki.png'%}" alt="" />
+                            <span class="slide-title">Купальники</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kurtki_i_plashchi.png'%}" alt="" />
+                            <span class="slide-title">Куртки и плащи</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/maika.png'%}" alt="" />
+                            <span class="slide-title">Майка</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/155">
+                            <img src="{%static 'image/nashivki_i_raznoye.png'%}" alt="" />
+                            <span class="slide-title">Нашивки и разное</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/131">
+                            <img src="{%static 'image/noski_chulki_kolgotki.png'%}" alt="" />
+                            <span class="slide-title">Носки|Чулки|Колготки</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/polotentsa_i_belye.png'%}" alt="" />
+                            <span class="slide-title">Полотенца и белье</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/volkoshapki.png'%}" alt="" />
+                            <span class="slide-title">Волкошапки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/225">
+                            <img src="{%static 'image/kospley.png'%}" alt="" />
+                            <span class="slide-title">Косплей</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/153">
+                            <img src="{%static 'image/pariki.png'%}" alt="" />
+                            <span class="slide-title">Парики</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/228">
+                            <img src="{%static 'image/kostyumy.png'%}" alt="" />
+                            <span class="slide-title">Костюмы</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/yaponskaya_shkolnaya_forma.png'%}" alt="" />
+                            <span class="slide-title">Японская школьная форма</span>
+                        </a>
+                    </div> -->
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kospley.png'%}" alt="" />
+                            <span class="slide-title">Косплей</span>
+                        </a>
+                    </div> -->
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/katany_kunai_mechi.png'%}" alt="" />
+                            <span class="slide-title">Катаны|Кунаи|Мечи</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/neko_ushki_obodki.png'%}" alt="" />
+                            <span class="slide-title">Неко|Ушки|Ободки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/136">
+                            <img src="{%static 'image/klyuchi_lyusi.png'%}" alt="" />
+                            <span class="slide-title">Ключи Люси</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kosmetika.png'%}" alt="" />
+                            <span class="slide-title">Косметика</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kraska_dlya_volos.png'%}" alt="" />
+                            <span class="slide-title">Краска для волос</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/32">
+                            <img src="{%static 'image/maskim.png'%}" alt="" />
+                            <span class="slide-title">Маски</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/bandany_naruto.png'%}" alt="" />
+                            <span class="slide-title">Банданы Наруто</span>
+                        </a>
+                    </div> -->
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/lapki.png'%}" alt="" />
+                            <span class="slide-title">Лапки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/50">
+                            <img src="{%static 'image/khvostiki.png'%}" alt="" />
+                            <span class="slide-title">Хвостики</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/atributy.png'%}" alt="" />
+                            <span class="slide-title">Атрибуты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/206">
+                            <img src="{%static 'image/obuv.png'%}" alt="" />
+                            <span class="slide-title">Обувь</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/190">
+                            <img src="{%static 'image/staff_i_aksessuary.png'%}" alt="" />
+                            <span class="slide-title">Стафф и аксесуары</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/46">
+                            <img src="{%static 'image/breloki.png'%}" alt="" />
+                            <span class="slide-title">Брелки</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kruzhki.png'%}" alt="" />
+                            <span class="slide-title">Кружки</span>
+                        </a>
+                    </div> -->
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/koshelki.png'%}" alt="" />
+                            <span class="slide-title">Кошельки</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/185">
+                            <img src="{%static 'image/kovriki_dlya_myshki.png'%}" alt="" />
+                            <span class="slide-title">Коврики для мышки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/226">
+                            <img src="{%static 'image/naushniki.png'%}" alt="" />
+                            <span class="slide-title">Наушники</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/zonty.png'%}" alt="" />
+                            <span class="slide-title">Зонты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/99">
+                            <img src="{%static 'image/perchatki.png'%}" alt="" />
+                            <span class="slide-title">Перчатки</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/remni.png'%}" alt="" />
+                            <span class="slide-title">Ремни</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/235">
+                            <img src="{%static 'image/selfi_palki.png'%}" alt="" />
+                            <span class="slide-title">Селфи палки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/20">
+                            <img src="{%static 'image/chasy.png'%}" alt="" />
+                            <span class="slide-title">Часы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/150">
+                            <img src="{%static 'image/chekhly_i_podstavki_na_telefon.png'%}" alt="" />
+                            <span class="slide-title">Чехлы и подставки на телефон</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/bento.png'%}" alt="" />
+                            <span class="slide-title">Бенто</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/149">
+                            <img src="{%static 'image/zaglushki_podveski_na_telefon.png'%}" alt="" />
+                            <span class="slide-title">Заглушки|Подвески на телефон</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/podarochnyye_nabory.png'%}" alt="" />
+                            <span class="slide-title">Подарочные наборы</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/221">
+                            <img src="{%static 'image/ocheshniki_i_salfetki.png'%}" alt="" />
+                            <span class="slide-title">Очешники и салфетки</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/ventilyatory.png'%}" alt="" />
+                            <span class="slide-title">Вентиляторы</span>
+                        </a>
+                    </div> -->
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/karty.png'%}" alt="" />
+                            <span class="slide-title">Карты</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/pazly.png'%}" alt="" />
+                            <span class="slide-title">Пазлы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/magnity.png'%}" alt="" />
+                            <span class="slide-title">Магниты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/54">
+                            <img src="{%static 'image/myagkiye_igrushki.png'%}" alt="" />
+                            <span class="slide-title">Мягкие игрушки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/160">
+                            <img src="{%static 'image/bizhuteriya.png'%}" alt="" />
+                            <span class="slide-title">Бижутерия</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/braslety.png'%}" alt="" />
+                            <span class="slide-title">Браслеты</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kolye.png'%}" alt="" />
+                            <span class="slide-title">Колье</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/koltsa.png'%}" alt="" />
+                            <span class="slide-title">Кольца</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kulony.png'%}" alt="" />
+                            <span class="slide-title">Кулоны</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/132">
+                            <img src="{%static 'image/sergi_i_zakolki.png'%}" alt="" />
+                            <span class="slide-title">Серьги и заколки</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/chokery.png'%}" alt="" />
+                            <span class="slide-title">Чокеры</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/130">
+                            <img src="{%static 'image/manga_0.png'%}" alt="" />
+                            <span class="slide-title">Манга</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/180">
+                            <img src="{%static 'image/originalnyye_anime_figurki_iz_yaponii.png'%}" alt="" />
+                            <span class="slide-title">Оригинальные фигурки из Японии</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/87">
+                            <img src="{%static 'image/anime_figurki_bu.png'%}" alt="" />
+                            <span class="slide-title">Аниме фигурки Б\У</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/66">
+                            <img src="{%static 'image/butleg.png'%}" alt="" />
+                            <span class="slide-title">Бутлег</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/95">
+                            <img src="{%static 'image/sharnirnyye_kukly.png'%}" alt="" />
+                            <span class="slide-title">Шарнирные куклы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/209">
+                            <img src="{%static 'image/yeda_iz_yaponii.png'%}" alt="" />
+                            <span class="slide-title">Еда из Японии</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/napitki.png'%}" alt="" />
+                            <span class="slide-title">Напитки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/chipsy.png'%}" alt="" />
+                            <span class="slide-title">Чипсы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/aziatskiye_produkty.png'%}" alt="" />
+                            <span class="slide-title">Азиатские продукты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/170">
+                            <img src="{%static 'image/tsvetnyye_linzy.png'%}" alt="" />
+                            <span class="slide-title">Цветные линзы</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/kospley_linzy.png'%}" alt="" />
+                            <span class="slide-title">Косплей линзы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/konteynery_dlya_linz.png'%}" alt="" />
+                            <span class="slide-title">Контейнеры для линз</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/59">
+                            <img src="{%static 'image/k-pop.png'%}" alt="" />
+                            <span class="slide-title">K-pop</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/210">
+                            <img src="{%static 'image/mankhva.png'%}" alt="" />
+                            <span class="slide-title">Манхва</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/22">
+                            <img src="{%static 'image/procheye.png'%}" alt="" />
+                            <span class="slide-title">Прочее</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/171">
+                            <img src="{%static 'image/podarochnaya_upakovka.png'%}" alt="" />
+                            <span class="slide-title">Подарочная упаковка</span>
+                        </a>
+                    </div>
+                    <!-- <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/pakety.png'%}" alt="" />
+                            <span class="slide-title">Пакеты</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/korobki.png'%}" alt="" />
+                            <span class="slide-title">Коробки</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/svechi.png'%}" alt="" />
+                            <span class="slide-title">Свечи</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/banty.png'%}" alt="" />
+                            <span class="slide-title">Банты</span>
+                        </a>
+                    </div> -->
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/207">
+                            <img src="{%static 'image/gik_tovary_komiksy_igry_serialy.png'%}" alt="" />
+                            <span class="slide-title">Гик товары|Комиксы|Игры|Сериалы</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="http://127.0.0.1:8000/catalog/27">
+                            <img src="{%static 'image/bilety_i_sertifikaty.png'%}" alt="" />
+                            <span class="slide-title">Билеты и сертификаты</span>
+                        </a>
+                    </div>
+                   <!--  <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/podarochnyye_sertifikaty.png'%}" alt="" />
+                            <span class="slide-title">Подарочные сертификаты</span>
+                        </a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#">
+                            <img src="{%static 'image/khoztovary.png'%}" alt="" />
+                            <span class="slide-title">Хозтовары</span>
+                        </a>
+                    </div> -->
+
+
+
+
+
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div name="prev" class="navy prev-slide"></div>
+            <div name="next" class="navy next-slide"></div>
+            <div class="auto play"></div>
+        </div>
+<!-- <div class="section">
+    <div class="section-row">
+        <div class="row-slider row">
+            <div class="row-anime" style= "width:284px;text-align: center;" >
+                <a href="#" >
+                    <img src="{%static 'image/anime.png'%}">
+                    <div>Аниме товары</div>
+                </a>
+            </div>
+            <div class="row-anime"style= "width:284px;text-align: center;">
+                <a href="#" >
+                    <img src="{%static 'image/anime_podushki_dakimakury.png'%}">
+                    <div>Аниме подушки, дакимакуры</div>
+                </a>
+            </div>
+            <div class="row-anime"style= "width:284px;text-align: center;">
+                <a href="#" >
+                    <img src="{%static 'image/dakimakury_150kh50.png'%}">
+                    <div>Дакимакуры 150х50</div>
+                </a>
+            </div>
+            <div class="row-anime"style= "width:284px;text-align: center;">
+                <a href="#" >
+                    <img src="{%static 'image/dakimakury_100x40.png'%}">
+                    <div>Дакимакуры 100х40</div>
+                </a>
+            </div>
+            <div class="row-anime"style= "width:284px;text-align: center;">
+                <a href="#" >
+                    <img src="{%static 'image/mini-podushki_165_kh_5sm.png'%}">
+                    <div>Мини подушки 16.5х5см</div>
+                </a>
+            </div>
+            <div class="row-anime"style= "width:284px;text-align: center;">
+                <a href="#" >
+                    <img src="{%static 'image/ryukzaki_i_sumki.png'%}">
+                    <div>Рюкзаки и сумки</div>
+                </a>
+            </div>
+            
+        </div>
+        
+    </div> -->
+    
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="{% static 'js/jquery-3.5.0.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}" ></script>
+<script src="{% static 'js/navbar_js.js' %}"></script>
+
+</body>
+</html>

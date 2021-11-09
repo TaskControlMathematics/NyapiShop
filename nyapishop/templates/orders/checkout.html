@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+	
+	{% block title %} checkout  {% endblock %}
+</head>
+{% block content %}
+<div class="container_checkout">
+
+	<div class="chechout_tree">
+		<a href="#">Главная</a> / Корзина
+	</div>
+	<div class="checkout_header">
+		<div class="checkout_header_text"><h1>Корзина</h1></div>
+		<div class="checkout_header_link"><a href="#" class="delete_all_product" >Очистить корзину</a></div>		
+	</div>
+	{% if products_in_basket %}
+	<div class="basket_product">
+		<form class="chekout_form" method="POST">{% csrf_token %}
+			<table>
+				<thead>
+					<tr class="basket_product_title">
+						<th class="basket_product_item"></th>
+						<th class="basket_product_item_title"></th>
+						<th class="basket_product_price_per_item">Цена</th>
+						<th class="basket_product_count">Колличество</th>
+						<th class="basket_product_total_price">Сумма</th>
+					</tr>
+				</thead>
+				<tbody>		
+					{% for product_in_basket in products_in_basket %}
+				
+
+					<tr class="basket_product_info">
+						<td class="basket_product_info_item">
+							<div class="basket_product_info_item_img">
+
+								<img src="{{product_in_basket.images.image.url}}" width="150" height="225">
+
+							</div>
+
+
+						</td>
+						<td class="basket_product_info_item_body">
+							<div class="basket_product_info_item_aticle">Артикул:нет</div>
+							<a class = 'title_link_checkout'href="{% url 'products:product' product_in_basket.product.id %}"><div class="basket_product_info_item_title">{{product_in_basket.product.product_title}}</div></a>
+							<div class="basket_product_info_item_delete"><a class = "delete_link" href="#" data-product_id ={{product_in_basket.id}}> Удалить x</a></div>
+						</td>
+						<td class="basket_product_info_price_per_item"><span class="basket_product_info_price_per_item_value">{{product_in_basket.price_per_item}}</span> руб.</td>
+						<td class="basket_product_info_count" >
+							<div style="width: 200px;
+							height: 50px;
+							border: 2px solid
+							grey;
+							border-radius: 31px;">
+
+							<div class="button-count-minus"> 
+								{% if  product_in_basket.count == 1%}
+									<button class="count-minus_checkout" type="button" disabled="">-</button>
+								{% else %}
+									<button class="count-minus_checkout" type="button" >-</button>
+								{% endif %}
+								
+							</div>	
+
+							<div class="input-count">
+								<input class="input_count" type = "number" value ={{product_in_basket.count}} name = 'product_in_basket_{{product_in_basket.id}}'>
+							</div>
+							<div class="button-count-plus" > 
+								<button class="count-plus_checkout" type="button">+</button>
+							</div>	
+						</div>
+
+
+					</td>
+					<td class="basket_product_info_total_price"><span class = "basket_product_info_total_price_value">{{product_in_basket.total_price}}</span> руб.</td>
+				</tr>
+
+									
+				{% endfor %}			
+			</tbody>
+		</table>
+		<div class="checkout_total_price">
+			<div class="checkout_total_price_button_back"></div>
+			<div class="checkout_total_price_box">
+				<div class="checkout_total_price_box_coupon"></div>
+				<div class="checkout_total_price_box_info">
+					<div class="checkout_total_price_box_info_div" >
+						<div class="checkout_total_price_box_info_div_total_price_text"><span>Сумма:</span></div>
+						<div id= "total_price_in_basket" class="checkout_total_price_box_info_div_total_price">0</div>
+					</div>
+					<div class="checkout_total_price_box_info_div">
+						<div class="checkout_total_price_box_info_div_total_price_text"><span>Скидка с купона:</span></div>
+						<div  class="checkout_total_price_box_info_div_total_price">0 руб.</div>
+					</div>
+					<div class="checkout_total_price_box_info_div">
+						<div class="checkout_total_price_box_info_div_total_price_text"><span>В том числе НДС 10%:</span></div>
+						<div id = "nds_in_basket" class="checkout_total_price_box_info_div_total_price">0</div>
+					</div>
+					<div class="checkout_total_price_box_info_div_cost">
+						<div class="checkout_total_price_box_info_div_total_price_text"><span>Итого:</span></div>
+						<div id="all_total_price_in_basket" class="checkout_total_price_box_info_div_total_price">0</div>
+					</div>
+				</div>
+			</div>
+
+		</div>	
+
+		<div class="checkout_info">
+			<div class="checkout_info_autorisation">
+				<div class="checkout_info_autorisation_text">Cовершаете покупки впервые? Вы можете пройти несложную процедуру <a id="register_checkout" href="{%url 'shop:registred'%}">Регистрации в магазине</a> </div>
+				<div class="checkout_info_autorisation_text">Войдите в Личный кабинет, если совершали покупки ранее.</div>
+				<div class="checkout_info_autorisation_help">Или продолжите оформление заказа без регистрации</div>
+			</div>
+
+		</div>
+		<div class="dostavka">
+			<h2>Доставка</h2>
+			<p></p>
+			<details open>
+				<summary>Самовывоз (дождитесь звонка менеджера 1-3 дня) - Забрать заказ в магазине на Тушинской </summary>
+				<div class="product_detail">
+					<label>Дата отгрузки</label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+
+			</details>
+			<details>
+				<summary>Курьер, Москва в пределах МКАД (1-3 дня) - 350 руб. (1-4дня) </summary>
+				<div class="product_detail">
+					<label>Адрес доставки</label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Дата и время доставки</label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+			</details>
+			<details>
+				<summary>Курьер до станции метро (1-3 дня) - 200 руб. (1-3дня) </summary>
+				<div class="product_detail">
+					<label>Дата и время доставки </label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Укажите станцию метро <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>	
+			</details>
+			<details>
+				<summary>Курьер за МКАД не далее 10 км (1-3 дня) - 500 руб. (1-4дня)  </summary>
+				<div class="product_detail">
+					<label>Адрес доставки <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Дата и время доставки </label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+			</details>
+			<details>
+				<summary>Почта России (сбор+доставка 5-30 дней) - 300 руб. </summary>
+				<div class="product_detail">
+					<label>ФИО <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Телефон получателя <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Адрес доставки <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Почтовый индекс </label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+			</details>
+			<details>
+				<summary>Доставка почтой крупногабаритных заказов (сбор+доставка 5-30 дней) - 500 руб.</summary>
+				<div class="product_detail">
+					<label>Адрес доставки <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Почтовый индекс <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Телефон </label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+			</details>
+			<details>
+				<summary>Срочная доставка - Сдек(сбор 1-3 дня, доставка до 5ти рабочих дней) - 500 руб. </summary>
+				<div class="product_detail">
+					<label>ФИО <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Телефон получателя <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Адрес доставки <span>*</span></label>
+					<p></p>
+					<input type="text" name="adress">
+					<p></p>
+					<label>Почтовый индекс </label>
+					<p></p>
+					<input type="text" name="adress">
+				</div>
+			</details>
+
+					<!-- <div class="option_type">
+						<div class="option_type_title"> Самовывоз (дождитесь звонка менеджера 1-3 дня) - Забрать заказ в магазине на Тушинской </div>
+						<div class="option_type_body">
+							<div class="option_title"></div>
+							<div><input type="text" name=""></div>
+						</div>
+					</div> -->
+					<!-- <div class="option_type">
+						<div class="option_type_title"> Курьер, Москва в пределах МКАД (1-3 дня) - бесплатно (1-4дня)  </div>
+						<div class="option_type_body">
+							<div class="option_title"></div>
+							<div>
+								<input type="text" name="">
+								<p></p>
+								<input type="text" name="">
+							</div>
+						</div>
+					</div> -->
+					
+
+				</div>
+				
+					<div class="customer_info">
+						<div class="costomer_info_title"><h2>Форма заказа</h2></div>
+						<div class = "customer_info_satic_div">
+							<div class="customer_info_snp_title">ФИО<span>*</span></div>
+							<div class="customer_info_snp_body"><input type="text" name="snp"></div>
+						</div>
+						<div class = "customer_info_satic_div">
+							<div class="customer_info_phone_title">Телефон<span>*</span></div>
+							<div class="customer_info_phone_body"><input type="text" name="phone"></div>
+
+						</div>
+						<div class = "customer_info_satic_div">
+							<div class="customer_info_email_title">Email<span>*</span></div>
+							<div class="customer_info_email_body"><input type="text" name="email"></div>
+
+						</div>
+						<div class="customer_info_other_info">
+							<div class="customer_info_other_title">Дополнительная информация</div>
+							<div class="customer_info_other_body"><textarea rows="7" cols="50" name = "other"></textarea> </div>
+						</div>
+						<div class="customer_info_obrbotka"> Я согласен(на) на обработку моих персональных данных <span>*</span> <a href="{%url 'shop:user_agreement' %}">(Подробнее)</a></div>
+						<div class="customer_info_capcha"></div>
+					</div>
+				
+
+				<div class="botton_order" style="margin-top: 20px;">
+					<button> Оформить заказ</button>
+				</div>
+
+			</form>
+
+		</div>
+		{%else%}
+		<div class="clearest_checkout">
+			Корзина пуста <a href="{% url 'shop:main' %}">Перейти на главную магазина</a>
+		</div>
+		{%endif%}
+
+
+	</div>
+	
+
+	{% endblock %}

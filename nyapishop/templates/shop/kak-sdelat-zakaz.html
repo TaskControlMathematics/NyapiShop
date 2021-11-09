@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Заказ  {% endblock %}
+<html lang = "en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "{% static 'css/bootstrap.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/registred_style.css' %}">
+</head>
+{% block content %}
+<div class="user_agreement_class" style="width:1508px;">
+    <div class="registration_pass"><a class = "main_link" href="{% url 'shop:main' %}">Главная</a>  /  <a class = "main_link" href="{% url 'shop:pomosh' %}">Помощь</a>  /  <span>Как сделать заказ</span> </div>
+    <div class="static_title"><h1>Как сделать заказ</h1></div>
+    
+    <div class="site_main_inner clear-self  ">
+
+
+        <div class="site_main_body">
+
+
+           <p>Оформить заказ вы можете самостоятельно на этом сайте или по телефону 89254547795.<br>
+<br>
+1. добавьте интересующие товары в корзину.<br>
+2. нажмите на значок корзины в верхнем правом углу экрана, в выпавшем меню промотайте ползунок&nbsp;вниз и нажмите на кнопку "оформить".<br>
+3. введите верно свои данные.<br>
+4. нажмите "оформить заказ" внизу экрана.<br>
+5. оплатите заказ(Для заказов по Москве есть возможность оплатить наличными при получении).<br>
+<br>
+<span style="font-size:15pt;">Как отследить заказ:</span><br>
+<br>
+Статус вашего заказа вы можете отследить перейдя по ссылке с вашей электронной почты после оформления заказа.<br>
+Для заказов почтой и службой Сдек получить трек номер для отслеживания заказа можно только после того как:<br>
+1. вы оплатили заказ<br>
+2. статус сменился на "в обработке"<br>
+3. статус сменился на "выслан"<br>
+Проверить по трек номеру где находится ваш заказ:<br>
+почта&nbsp;&nbsp;<a href="https://www.pochta.ru/tracking">https://www.pochta.ru/tracking</a>&nbsp;Сдек&nbsp;<a href="https://cdek.ru/tracking">https://cdek.ru/tracking</a></p>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
